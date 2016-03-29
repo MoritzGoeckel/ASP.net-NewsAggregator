@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+  <source>
+    <name>Bild</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://rss.bild.de/bild.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Süddeutsche Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://suche.sueddeutsche.de/?output=rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Frankfurter Allgemeine Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.faz.net/rss/aktuell/</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Westdeutsche Allgemeine Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://derwesten.dynamic.feedsportal.com/pf/637009/www.derwesten.de/?service=rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Rheinische Post</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.rp-online.de/feed.rss</url>
+      <url>http://www.rp-online.de/politik/feed.rss</url>
+      <url>http://www.rp-online.de/wirtschaft/feed.rss</url>
+      <url>http://www.rp-online.de/panorama/feed.rss</url>
+      <url>http://www.rp-online.de/sport/feed.rss</url>
+      <url>http://www.rp-online.de/kultur/feed.rss</url>
+      <url>http://www.rp-online.de/panorama/wissen/feed.rss</url>
+      <url>http://www.rp-online.de/panorama/feed.rss</url>
+      <url>http://www.rp-online.de/leben/gesundheit/feed.rss</url>
+      <url>http://www.rp-online.de/digitales/feed.rss</url>
+      <url>http://www.rp-online.de/leben/reisen/feed.rss</url>
+      <url>http://www.rp-online.de/leben/beruf/feed.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Südwest-Presse</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss></rss>
+  </source>
+
+  <source>
+    <name>Freie Presse</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.freiepresse.de/RSS/rss_regional.php</url>
+      <url>http://www.freiepresse.de/RSS/rss_politik.php</url>
+      <url>http://www.freiepresse.de/RSS/rss_wirtschaft.php</url>
+      <url>http://www.freiepresse.de/RSS/rss_kultur.php</url>
+      <url>http://www.freiepresse.de/RSS/rss_sport.php</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Sächsische Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.sz-online.de/Politik.rss</url>
+      <url>http://www.sz-online.de/Wirtschaft.rss</url>
+      <url>http://www.sz-online.de/Wissen.rss</url>
+      <url>http://www.sz-online.de/Panorama.rss</url>
+      <url>http://www.sz-online.de/Kultur.rss</url>
+      <url>http://www.sz-online.de/Sport.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Neue Westfälische</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.nw-news.de/_export/nw/rss_nachrichten/index.rss</url>
+      <url>http://www.nw-news.de/nw/_rss/aus_aller_welt/index.rss</url>
+      <url>http://www.nw-news.de/_export/nw/rss_wirtschaft/index.rss</url>
+      <url>http://www.nw-news.de/_export/nw/rss_computer/index.rss</url>
+      <url>http://www.nw-news.de/_export/nw/rss_sport/index.rss</url>
+      <url>http://www.nw-news.de/_export/nw/rss_top20/index.rss</url>
+      <url>http://www.nw-news.de/_export/nw/rss_kultur/index.rss</url>
+      <url>http://www.nw-news.de/_export/nw/rss_owl/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Die Rheinpfalz</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Kölner Stadt-Anzeiger</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.ksta.de/home/15189516,15189516,view,asFeed.xml</url>
+      <url>http://www.ksta.de/politik/15187246,15187246,view,asFeed.xml</url>
+      <url>http://www.ksta.de/panorama/15189504,15189504,view,asFeed.xml</url>
+      <url>http://www.ksta.de/wirtschaft/15187248,15187248,view,asFeed.xml</url>
+      <url>http://www.ksta.de/kultur/15189520,15189520,view,asFeed.xml</url>
+      <url>http://www.ksta.de/debatte/15188012,15188012,view,asFeed.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Augsburger Allgemeine</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.augsburger-allgemeine.de/politik/rss</url>
+      <url>http://www.augsburger-allgemeine.de/wirtschaft/rss</url>
+      <url>http://www.augsburger-allgemeine.de/panorama/rss</url>
+      <url>http://www.augsburger-allgemeine.de/wissenschaft/rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Hessische/Niedersächsische Allgemeine</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Rhein-Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.rhein-zeitung.de/feed/35-topthemen-kurz.xml</url>
+      <url>http://www.rhein-zeitung.de/feed/5-newsticker.xml</url>
+      <url>http://www.rhein-zeitung.de/feed/4-regioticker.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Leipziger Volkszeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://nachrichten.lvz-online.de/rss/leipzig-rss.xml</url>
+      <url>http://nachrichten.lvz-online.de/rss/mitteldeutschland-rss.xml</url>
+      <url>http://nachrichten.lvz-online.de/rss/kultur-rss.xml</url>
+      <url>http://nachrichten.lvz-online.de/rss/polizeiticker-rss.xml</url>
+      <url>http://nachrichten.lvz-online.de/rss/brennpunkte-rss.xml</url>
+      <url>http://nachrichten.lvz-online.de/rss/boulevard-rss.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Hamburger Abendblatt</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.abendblatt.de/?service=Rss</url>
+      <url>http://www.abendblatt.de/hamburg/?service=Rss</url>
+      <url>http://www.abendblatt.de/sport/?service=Rss</url>
+      <url>http://www.abendblatt.de/politik/?service=Rss</url>
+      <url>http://www.abendblatt.de/wirtschaft/?service=Rss</url>
+      <url>http://www.abendblatt.de/kultur-live/?service=Rss</url>
+      <url>http://www.abendblatt.de/region/norddeutschland/?service=Rss</url>
+      <url>http://www.abendblatt.de/vermischtes/?service=Rss</url>
+      <url>http://www.abendblatt.de/kultur-live/kino/?service=Rss</url>
+      <url>http://www.abendblatt.de/kultur-live/tv-und-medien/?service=Rss</url>
+      <url>http://www.abendblatt.de/wirtschaft/karriere/?service=Rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Mitteldeutsche Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.mz-web.de/nachrichten/20641290,20641290,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/startseite/20639998,20639998,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/mitteldeutschland/20641266,20641266,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/politik/20642162,20642162,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/wirtschaft/20642182,20642182,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/kultur---medien/20642198,20642198,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/panorama/20642226,20642226,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/meinungen/20641344,20641344,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/sport/20641306,20641306,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/geld/20643222,20643222,view,asFeed.xml</url>
+      <url>http://www.mz-web.de/multimedia/20642986,20642986,view,asFeed.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Münchner Merkur</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.merkur-online.de/aktuelles/welt/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/aktuelles/politik/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/aktuelles/wirtschaft/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/aktuelles/computer-wissen/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/aktuelles/kultur/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/aktuelles/boulevard/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/lokales/regionen/rssfeed.rdf</url>
+      <url>http://www.merkur-online.de/service/karriere/rssfeed.rdf</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Magdeburger Volksstimme</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/deutschland/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/ausland/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/wirtschaft/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/boerse/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/boersedax/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/boersenyc/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/meinungunddebatte/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/kommentar/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/sachsenanhalt/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/kulturmedien/live/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/nachrichten/lmagdeburg/index_vsm.rss</url>
+      <url>http://www.volksstimme.de/_export/rss/sport/index_vsm.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Die Welt</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.welt.de/?service=Rss</url>
+      <url>http://www.welt.de/wirtschaft/?service=Rss</url>
+      <url>http://www.welt.de/sport/?service=Rss</url>
+      <url>http://www.welt.de/vermischtes/?service=Rss</url>
+      <url>http://www.welt.de/reise/?service=Rss</url>
+      <url>http://www.welt.de/regionales/?service=Rss</url>
+      <url>http://www.welt.de/debatte/?service=Rss</url>
+      <url>http://www.welt.de/politik/?service=Rss</url>
+      <url>http://www.welt.de/finanzen/?service=Rss</url>
+      <url>http://www.welt.de/wissenschaft/?service=Rss</url>
+      <url>http://www.welt.de/kultur/?service=Rss</url>
+      <url>http://www.welt.de/motor/?service=Rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Schwäbische Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.schwaebische.de/feed/54-bodenseekreis.xml</url>
+      <url>http://www.schwaebische.de/feed/12-altshausen.xml</url>
+      <url>http://www.schwaebische.de/feed/15-bad-wurzach.xml</url>
+      <url>http://www.schwaebische.de/feed/35-bad-saulgau.xml</url>
+      <url>http://www.schwaebische.de/feed/22-bad-schussenried.xml</url>
+      <url>http://www.schwaebische.de/feed/4-aalen.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Passauer Neue Presse</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.pnp.de/_export/rss/nachrichten/bayern/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/deutschland_welt/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/politik/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/sport/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/wirtschaft/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/kultur/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/panorama/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/computer_internet/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/wissenschaft/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/stadt_landkreis_passau/gesamt/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/landkreis_deggendorf/landkreis/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/landkreis_dingolfing_landau/landkreis/index.rss</url>
+      <url>http://www.pnp.de/_export/rss/nachrichten/landkreis_freyung_grafenau/landkreis/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Thüringer Allgemeine</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.thueringer-allgemeine.de/startseite/-/rss/OPg4/feed.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Neue Osnabrücker Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.noz.de/rss/ressort/Wirtschaft</url>
+      <url>http://www.noz.de/rss/ressort/Kultur</url>
+      <url>http://www.noz.de/rss/ressort/Politik</url>
+      <url>http://www.noz.de/rss/ressort/Medien</url>
+      <url>http://www.noz.de/rss/ressort/Vermischtes</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Weser-Kurier</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Ostsee-Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.ostsee-zeitung.de/rss/feed/oz_kultur</url>
+      <url>http://www.ostsee-zeitung.de/rss/feed/oz_sport</url>
+      <url>http://www.ostsee-zeitung.de/rss/feed/oz_wirtschaft</url>
+      <url>http://www.ostsee-zeitung.de/rss/feed/oz_politik</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Badische Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Saarbrücker Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.saarbruecker-zeitung.de/storage/rss/rss/weltnews.xml</url>
+      <url>http://www.saarbruecker-zeitung.de/storage/rss/rss/wirtschaft.xml</url>
+      <url>http://www.saarbruecker-zeitung.de/storage/rss/rss/buntes.xml</url>
+      <url>http://www.saarbruecker-zeitung.de/storage/rss/rss/sport.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Hannoversche Allgemeine Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.haz.de/rss/feed/haz_schlagzeilen</url>
+      <url>http://www.haz.de/rss/feed/haz_politik</url>
+      <url>http://www.haz.de/rss/feed/haz_wirtschaft</url>
+      <url>http://www.haz.de/rss/feed/haz_sport</url>
+      <url>http://www.haz.de/rss/feed/haz_kultur</url>
+      <url>http://www.haz.de/rss/feed/haz_panorama</url>
+      <url>http://www.haz.de/rss/feed/haz_medien</url>
+      <url>http://www.haz.de/rss/feed/haz_wissen</url>
+      <url>http://www.haz.de/rss/feed/haz_meinung</url>
+      <url>http://www.haz.de/rss/feed/haz_hannoverregion</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Allgemeine Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.allgemeine-zeitung.de/lokales/mainz/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/mainz/nachrichten-mainz/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/alzey/alzey/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/oppenheim/oppenheim/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/bingen/bingen/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/ingelheim/ingelheim/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/kirn/kirn/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/kultur/kino/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/kultur/literatur/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/kultur/musik/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/kultur/theater/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/kultur/fernsehen/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/lokales/polizei/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/politik/rheinland-pfalz/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/politik/hessen/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/politik/deutschland/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/politik/ausland/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wirtschaft/wirtschaft-regional/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wirtschaft/wirtschaft-ueberregional/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wirtschaft/wirtschaftstipp/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wirtschaft/geld-und-recht/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wirtschaft/geldmarkt-aktuell/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wissen/campus/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wissen/wissenschaft/index.rss</url>
+      <url>http://www.allgemeine-zeitung.de/wissen/vermischtes/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Stuttgarter Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.stuttgarter-zeitung.de/news.rss.feed</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Westfälischer Anzeiger</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.wa.de/nachrichten/rssfeed.rdf</url>
+      <url>http://www.wa.de/sport/rssfeed.rdf</url>
+      <url>http://www.wa.de/leben/film-tv/rssfeed.rdf</url>
+      <url>http://www.wa.de/lokales/rssfeed.rdf</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>tz</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Ruhr-Nachrichten</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.ruhrnachrichten.de/nachrichten/?_XML=rss</url>
+      <url>http://www.ruhrnachrichten.de/leben-und-erleben/?_XML=rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Nürnberger Nachrichten</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Badische Neueste Nachrichten</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Märkische Allgemeine</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.maz-online.de/rss/feed/maz_brandenburg</url>
+      <url>http://www.maz-online.de/rss/feed/maz_potsdam</url>
+      <url>http://www.maz-online.de/rss/feed/maz_brandenbh</url>
+      <url>http://www.maz-online.de/rss/feed/maz_potsdam-mittelmark</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Südkurier</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://feeds.feedburner.com/Suedkurier_aktuell</url>
+      <url>http://feeds.feedburner.com/suedkurier_sport</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>B.Z.</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.bz-berlin.de/feed</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Berliner Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://berliner-zeitung.feedsportal.com/c/35000/f/646697/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Der Tagesspiegel</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://tagesspiegel.feedsportal.com/c/33356/f/566373/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Express</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://rss.feedsportal.com/c/32139/f/646634/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Main-Post</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.mainpost.de/storage/rss/rss/topnews.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Westfälische Rundschau</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://derwesten.dynamic.feedsportal.com/pf/637009/www.derwesten.de/?service=rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Nordwest-Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+    </rss>
+  </source>
+
+  <source>
+    <name>Braunschweiger Zeitung</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.braunschweiger-zeitung.de/rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Schwarzwälder Bote</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.schwarzwaelder-bote.de/lokales.rss.feed</url>
+      <url>http://www.schwarzwaelder-bote.de/videos/aus-deutschland-und-der-welt.rss.feed</url>
+      <url>http://www.schwarzwaelder-bote.de/kino-kanal.rss.feed</url>
+      <url>http://www.schwarzwaelder-bote.de/.rss.feed</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Handelsblatt</name>
+    <typ>Zeitung</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.handelsblatt.com/contentexport/feed/schlagzeilen</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/wirtschaft</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/top-themen</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/finanzen</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/marktberichte</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/technologie</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/politik</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/meinung</url>
+      <url>http://www.handelsblatt.com/contentexport/feed/panorama</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Tagesschau</name>
+    <typ>Online</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.tagesschau.de/xml/rss2</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Heute</name>
+    <typ>Online</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.heute.de/ZDF/zdfportal/web/heute-Nachrichten/4672/3998/f9101d/ZDFheute--Nachrichten---Startseite.html?view=rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>N24</name>
+    <typ>Online</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://feeds.n24.de/n24/homepage</url>
+      <url>http://feeds.n24.de/n24/wirtschaft_boerse</url>
+      <url>http://feeds.n24.de/n24/sport</url>
+      <url>http://feeds.n24.de/n24/multimedia</url>
+      <url>http://feeds.n24.de/n24/job_karriere</url>
+      <url>http://feeds.n24.de/n24/gesundheit</url>
+      <url>http://feeds.feedburner.com/n24/wissenschaft</url>
+      <url>http://feeds.n24.de/n24/politik</url>
+      <url>http://feeds.n24.de/n24/news_stories</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Heise</name>
+    <typ>Online</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.heise.de/newsticker/heise-atom.xml</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Netzpolitik</name>
+    <typ>Online</typ>
+    <country>DE</country>
+    <rss>
+      <url>https://netzpolitik.org/feed/</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Spiegel</name>
+    <typ>Zeitschrift</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.spiegel.de/schlagzeilen/index.rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Zeit</name>
+    <typ>Zeitschrift</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://newsfeed.zeit.de/all</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Verdi</name>
+    <typ>Zeitschrift</typ>
+    <country>DE</country>
+    <rss>
+      <url>https://www.verdi.de/themen/nachrichten/rss</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Stern</name>
+    <typ>Zeitschrift</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://www.stern.de/feed/standard/all/</url>
+      <url>http://www.stern.de/feed/standard/alle-nachrichten/</url>
+    </rss>
+  </source>
+
+  <source>
+    <name>Focus</name>
+    <typ>Zeitschrift</typ>
+    <country>DE</country>
+    <rss>
+      <url>http://rss.focus.de/fol/XML/rss_folnews.xml</url>
+    </rss>
+  </source>
+</root>
