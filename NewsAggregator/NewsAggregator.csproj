@@ -226,13 +226,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="BackgroundWorkers\ArticleProcessor.cs" />
     <Compile Include="BackgroundWorkers\DataDownloader.cs" />
-    <Compile Include="BackgroundWorkers\Model\ProcessedArticle.cs" />
+    <Compile Include="BackgroundWorkers\Model\DateCountPair.cs" />
+    <Compile Include="BackgroundWorkers\Model\Article.cs" />
     <Compile Include="BackgroundWorkers\Database\INewsDatabase.cs" />
     <Compile Include="BackgroundWorkers\Model\TextSource.cs" />
     <Compile Include="BackgroundWorkers\Database\MongoFacade.cs" />
+    <Compile Include="BackgroundWorkers\Model\WordCountPair.cs" />
     <Compile Include="BackgroundWorkers\NewsAggregatorScheduler.cs" />
-    <Compile Include="BackgroundWorkers\ReportCreator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

@@ -6,20 +6,16 @@ using System.Web;
 
 namespace NewsAggregator.BackgroundWorkers
 {
-    public class ProcessedArticle
+    public class ArticleProcessor
     {
-        public string Headline, Summery, Url;
-        public DateTime PublishDate, DownloadDate;
-        public TextSource Source;
-
-        public ProcessedArticle(string Headline, string Summery, string Url, DateTime PublishDate, TextSource Source)
+        public static Article processArticle(string Headline, string Summery, string Url, DateTime PublishDate, DateTime DownloadDate, TextSource Source)
         {
-            this.Headline = replaceSpecialChars(removeHTML(Headline));
-            this.Summery = replaceSpecialChars(removeHTML(Summery));
-            this.Url = Url;
-            this.PublishDate = PublishDate;
-            this.Source = Source;
-            this.DownloadDate = DateTime.Now;
+            return new Article(replaceSpecialChars(removeHTML(Headline)),
+                replaceSpecialChars(removeHTML(Summery)),
+                Url,
+                PublishDate,
+                DownloadDate,
+                Source);
         }
 
         public static string removeHTML(string text)
