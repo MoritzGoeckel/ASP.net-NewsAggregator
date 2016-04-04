@@ -16,8 +16,6 @@ namespace NewsAggregator
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
-
             //Hangfire
             GlobalConfiguration.Configuration
                 .UseSqlServerStorage(@"Server=(localdb)\MSSQLLocalDB; Database=hangfireDb;");
@@ -27,6 +25,8 @@ namespace NewsAggregator
 
             NewsAggregatorScheduler scheduler = NewsAggregatorScheduler.getInstance();
             scheduler.Start();
+
+            GlobalDataManager.getInstance().init(new MongoFacade()); 
         }
     }
 }

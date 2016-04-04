@@ -13,8 +13,12 @@ namespace NewsAggregator.BackgroundWorkers
 
         void InsertArticle(Article article);
         void InsertArticles(List<Article> articles);
-        List<Article> GetArticles(string topic, DateTime from, DateTime to);
+
+        List<Article> GetArticles(string word, DateTime from, DateTime to);
         List<Article> GetArticles(DateTime from, DateTime to);
+        List<Article> GetArticles(DateTime to, int count);
+        List<Article> GetArticles(string word, DateTime to, int count);
+
 
         void SaveCurrentWordsForHistory(); //Save the "GetCurrentWords" to the "GetWords" //Only once a Day
         List<WordCountPair> GetWords(int count, DateTime date);
@@ -23,6 +27,6 @@ namespace NewsAggregator.BackgroundWorkers
         void UpdateCurrentWords();
         List<WordCountPair> GetCurrentWords(int count);
 
-        List<DateCountPair> GetWordStatistic(DateTime from, DateTime to);
+        List<DateCountPair> GetWordStatistic(string word);
     }
 }
