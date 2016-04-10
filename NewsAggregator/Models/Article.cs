@@ -4,16 +4,23 @@ using NewsAggregator.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace NewsAggregator.BackgroundWorkers
 {
+    [Serializable]
     public class Article
     {
         public string Headline, Summery, Url;
+
+        [NonSerialized]
         public DateTime PublishDate, DownloadDate;
+
         public TextSource Source;
-        
+
+        public double date;
+
         public Article(string Headline, string Summery, string Url, DateTime PublishDate, DateTime DownloadDate, TextSource Source)
         {
             this.Headline = Headline;
@@ -22,6 +29,8 @@ namespace NewsAggregator.BackgroundWorkers
             this.PublishDate = PublishDate;
             this.Source = Source;
             this.DownloadDate = DownloadDate;
+
+            this.date = DateTimeHelper.DateTimeToUnixTimestamp(DownloadDate);
         }
 
         public Article(BsonDocument bson, INewsDatabase database)
@@ -32,6 +41,8 @@ namespace NewsAggregator.BackgroundWorkers
             this.PublishDate = DateTimeHelper.UnixTimeStampToDateTime(bson["published"].AsDouble);
             this.DownloadDate = DateTimeHelper.UnixTimeStampToDateTime(bson["downloaded"].AsDouble);
             this.Url = bson["url"].AsString;
+
+            this.date = DateTimeHelper.DateTimeToUnixTimestamp(DownloadDate);
         }
 
         public string getID()

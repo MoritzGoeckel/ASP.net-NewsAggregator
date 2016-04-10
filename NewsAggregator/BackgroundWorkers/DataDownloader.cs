@@ -11,75 +11,34 @@ namespace NewsAggregator.BackgroundWorkers
 {
     public class DataDownloader
     {
-        public List<TextSource> Sources;
+        public Dictionary<string, TextSource> Sources;
+        private INewsDatabase database;
 
         public DataDownloader(INewsDatabase database)
         {
             Sources = database.GetSources();
+            this.database = database;
         }
-
-        /*public void LoadSources(string path) //Todo: what to do?
-        {
-            try
-            {
-                Sources.Clear();
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(path);
-
-                XmlNode root = doc.SelectSingleNode("root");
-                foreach (XmlNode node in root.ChildNodes)
-                {
-                    Sources.Add(CreateTextsourceFromXML(node));
-                }
-            }
-            catch(Exception e) { throw new Exception("Cant load Sources!", e); }
-        }*/
 
         public List<Article> DownloadArticles()
         {
             List<Article> articles = new List<Article>();
-            foreach (TextSource source in Sources)
+            foreach (KeyValuePair<string,TextSource> source in Sources)
             {
                 try
                 {
-                    articles.AddRange(DownloadArticlesForSource(source));
+                    articles.AddRange(DownloadArticlesForSource(source.Value, database));
                 }
                 catch (Exception e)
                 {
-                    Logger.Error("Error downloading articles: " + source.getID() + " " + e.Message);
+                    Logger.Error("Error downloading articles: " + source.Key + " " + e.Message);
                 }
             }
 
             return articles;
         }
 
-        /*public TextSource CreateTextsourceFromXML(XmlNode xml)
-        {
-            try
-            {
-                List<string> urls = new List<string>();
-                string Name = xml.SelectSingleNode("name").InnerText;
-                string Typ = xml.SelectSingleNode("typ").InnerText;
-                string Country = xml.SelectSingleNode("country").InnerText;
-
-                //Hat URLs
-                if (xml.SelectSingleNode("rss").ChildNodes.Count != 0)
-                {
-                    //Iterate urls
-                    foreach (XmlNode urlNode in xml.SelectSingleNode("rss").ChildNodes)
-                        urls.Add(urlNode.InnerText);
-                }
-
-                return new TextSource(Name, Typ, Country, urls);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Cant parse XML for TextSource!", e);
-            }
-        }*/
-
-        public List<Article> DownloadArticlesForSource(TextSource source)
+        public List<Article> DownloadArticlesForSource(TextSource source, INewsDatabase database)
         {
             List<Article> articles = new List<Article>();
             foreach (string url in source.urls)
@@ -99,20 +58,22 @@ namespace NewsAggregator.BackgroundWorkers
                                         item.Title.Text,
                                         item.Summary.Text,
                                         (item.Links.Count > 0 ? item.Links[0].Uri.ToString() : ""),
-                                        DateTime.Now,
                                         item.PublishDate.DateTime,
+                                        DateTime.Now,
                                         source)
                                     );
                         }
                         catch (Exception e)
                         {
                             Logger.Error("Error creating article object: " + e.Message);
+                            database.AddDownloadErrorToSource(source);
                         }
                     }
                 }
                 catch (Exception e)
                 {
                     Logger.Error("Error downloading from URL: " + url + " " + e.Message);
+                    database.AddDownloadErrorToSource(source);
                 }
             }
             return articles;

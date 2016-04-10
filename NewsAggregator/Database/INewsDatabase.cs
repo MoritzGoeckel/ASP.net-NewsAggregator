@@ -36,6 +36,8 @@ namespace NewsAggregator.BackgroundWorkers
         Dictionary<string, bool> GetCommonWords();
         void InsertCommonWords(string word);
 
+        void AddDownloadErrorToSource(TextSource source);
+
         void Shutdown();
     }
 }

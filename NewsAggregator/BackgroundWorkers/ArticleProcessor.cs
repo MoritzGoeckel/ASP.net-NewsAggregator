@@ -20,14 +20,7 @@ namespace NewsAggregator.BackgroundWorkers
 
         public static void getArticleWords(Article article, ref Dictionary<string, int> wordsListToUpdate)
         {
-            string[] words = article.Headline.Split(' ');
-
-            List<string> wordsOnlyOnce = new List<string>();
-            foreach (string w in words)
-                if (wordsOnlyOnce.Contains(w) == false)
-                    wordsOnlyOnce.Add(w);
-
-            foreach(string w in wordsOnlyOnce)
+            foreach(string w in getWordList(article.Headline))
             {
                 if(w != null && w != "" && w != " ")
                 {
@@ -124,8 +117,10 @@ namespace NewsAggregator.BackgroundWorkers
             string[] ws = removeSpecialChars(text).Split(' ');
             foreach (string word in ws)
             {
-                if (word != null && word != "" && word != " " && words.Contains(word) == false)
-                    words.Add(word);
+                string low_word = word.ToLower();
+
+                if (low_word != null && low_word != "" && low_word != " " && words.Contains(low_word) == false)
+                    words.Add(low_word);
             }
 
             return words;

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace NewsAggregator.BackgroundWorkers.Model
 {
+    [Serializable]
     public class WordCountPair
     {
         public WordCountPair(string Word, int Count)

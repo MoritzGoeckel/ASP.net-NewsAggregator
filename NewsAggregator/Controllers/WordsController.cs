@@ -26,7 +26,7 @@ namespace NewsAggregator.Controllers
 
         public IEnumerable<DateCountPair> GetWords(string topic) //api/words/topic
         {
-            return database.GetWordStatistic(topic);
+            return database.GetWordStatistic(topic); //Todo: implement
         }
     }
 }

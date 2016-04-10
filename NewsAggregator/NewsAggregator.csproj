@@ -236,7 +236,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Database\INewsDatabase.cs" />
     <Compile Include="Models\TextSource.cs" />
-    <Compile Include="Database\MongoFacade.cs" />
+    <Compile Include="Database\MongoDBImplementation.cs" />
     <Compile Include="Models\WordCountPair.cs" />
     <Compile Include="BackgroundWorkers\NewsAggregatorScheduler.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
@@ -249,10 +249,12 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\DateTimeHelper.cs" />
     <Compile Include="Util\GlobalDataManager.cs" />
+    <Compile Include="Util\Importer.cs" />
     <Compile Include="Util\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\common_words.txt" />
     <Content Include="Content\Sources.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

@@ -10,6 +10,7 @@ using System.Xml;
 
 namespace NewsAggregator.BackgroundWorkers.Model
 {
+    [Serializable]
     public class TextSource
     {
         public string Name, Typ, Country;

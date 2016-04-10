@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Net.Http.Headers;
 
 namespace NewsAggregator
 {
@@ -14,10 +15,12 @@ namespace NewsAggregator
         {
             // Web-API-Konfiguration und -Dienste
             // Web-API für die ausschließliche Verwendung von Trägertokenauthentifizierung konfigurieren.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            //config.SuppressDefaultHostAuthentication();
+            //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web-API-Routen
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html")); //With this line its JSON, without its XML
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

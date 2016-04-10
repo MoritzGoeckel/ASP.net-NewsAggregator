@@ -36,7 +36,7 @@ namespace NewsAggregator.BackgroundWorkers
 
             client = new MongoClient();
             server = client.GetServer();
-            database = server.GetDatabase("tester");
+            database = server.GetDatabase("testDB"); //Todo: Real name
 
             articles = database.GetCollection("articles");
             words = database.GetCollection("words");
@@ -54,35 +54,19 @@ namespace NewsAggregator.BackgroundWorkers
 
         void INewsDatabase.PrepareDB()
         {
-            /*
-            
-            var docsDarunter = collection.Find(Query.LT("nr", 4)).SetSortOrder(SortBy.Descending("nr")).SetLimit(1);
-            BsonDocument darunter = docsDarunter.ToList<BsonDocument>()[0];
-
-            var docsDarüber = collection.Find(Query.GT("nr", 4)).SetSortOrder(SortBy.Ascending("nr")).SetLimit(1);
-            BsonDocument darüber = docsDarüber.ToList<BsonDocument>()[0];
-
-            Console.WriteLine(darunter["str"] + " " + darüber["str"]);
-
-
-
-            //Bereich auslesen
-            var docsBerreich = collection.Find(Query.And(Query.GT("nr", 1), Query.LT("nr", 5))).SetSortOrder(SortBy.Ascending("nr"));
-            foreach (var d in docsBerreich)
-                Console.WriteLine(d["str"]);
-
-            */
+            articles.CreateIndex(IndexKeys.Ascending("id"), IndexOptions.SetUnique(true));
+            commonWords.CreateIndex(IndexKeys.Ascending("word"), IndexOptions.SetUnique(true));
         }
 
         List<Article> INewsDatabase.GetArticles(DateTime to, int count)
         {
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(
-                    Query.LTE("date", DateTimeHelper.DateTimeToUnixTimestamp(to))
+                    Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to))
                 ).SetLimit(count);
 
             foreach (var d in docs)
-                returnArticles.Add(new Article(d, this)); //Todo: Bson to Article
+                returnArticles.Add(new Article(d, this));
 
             return returnArticles;
         }
@@ -92,13 +76,13 @@ namespace NewsAggregator.BackgroundWorkers
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(
                 Query.And(
-                    Query.GT("date", DateTimeHelper.DateTimeToUnixTimestamp(from)),
-                    Query.LTE("date", DateTimeHelper.DateTimeToUnixTimestamp(to))
+                    Query.GT("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(from)),
+                    Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to))
                     )
                 ).SetLimit(count);
 
             foreach (var d in docs)
-                returnArticles.Add(new Article(d, this)); //Todo: Bson to Article
+                returnArticles.Add(new Article(d, this));
 
             return returnArticles;
         }
@@ -108,13 +92,13 @@ namespace NewsAggregator.BackgroundWorkers
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(
                 Query.And(
-                    Query.GT("date", DateTimeHelper.DateTimeToUnixTimestamp(from)),
-                    Query.LTE("date", DateTimeHelper.DateTimeToUnixTimestamp(to))
+                    Query.GT("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(from)),
+                    Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to))
                     )
                 );
 
             foreach (var d in docs)
-                returnArticles.Add(new Article(d, this)); //Todo: Bson to Article
+                returnArticles.Add(new Article(d, this));
 
             return returnArticles;
         }
@@ -124,13 +108,13 @@ namespace NewsAggregator.BackgroundWorkers
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(
                 Query.And(
-                    Query.LTE("date", DateTimeHelper.DateTimeToUnixTimestamp(to)),
+                    Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to)),
                     Query.Or(Query.Matches("headline", getSearchString(word)), Query.Matches("summery", getSearchString(word)))
                     )
                 ).SetLimit(count);
 
             foreach (var d in docs)
-                returnArticles.Add(new Article(d, this)); //Todo: Bson to Article
+                returnArticles.Add(new Article(d, this));
 
             return returnArticles;
         }
@@ -140,14 +124,14 @@ namespace NewsAggregator.BackgroundWorkers
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(
                 Query.And(
-                    Query.GT("date", DateTimeHelper.DateTimeToUnixTimestamp(from)),
-                    Query.LTE("date", DateTimeHelper.DateTimeToUnixTimestamp(to)),
+                    Query.GT("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(from)),
+                    Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to)),
                     Query.Or(Query.Matches("headline", getSearchString(word)), Query.Matches("summery", getSearchString(word)))
                     )
                 ).SetLimit(count);
 
             foreach (var d in docs)
-                returnArticles.Add(new Article(d, this)); //Todo: Bson to Article
+                returnArticles.Add(new Article(d, this));
 
             return returnArticles;
         }
@@ -167,7 +151,10 @@ namespace NewsAggregator.BackgroundWorkers
         List<WordCountPair> INewsDatabase.GetCurrentWords(int count)
         {
             List<WordCountPair> returnWords = new List<WordCountPair>();
-            var docs = words.FindAs<BsonDocument>(Query.EQ("date", "current")).SetLimit(count);
+            var docs = words.FindAs<BsonDocument>(Query.EQ("date", "current"))
+                .SetSortOrder(SortBy.Descending("count"))
+                .SetLimit(count);
+
             foreach(var d in docs)
                 returnWords.Add(new WordCountPair(d["word"].AsString, d["count"].AsInt32));
 
@@ -182,7 +169,8 @@ namespace NewsAggregator.BackgroundWorkers
                     Query.GT("date", DateTimeHelper.DateTimeToUnixTimestamp(date.Subtract(new TimeSpan(24, 0, 0)))),
                     Query.LTE("date", DateTimeHelper.DateTimeToUnixTimestamp(date))
                     )
-                ).SetLimit(count);
+                ).SetSortOrder(SortBy.Descending("count"))
+                .SetLimit(count);
 
             foreach (var d in docs)
                 returnWords.Add(new WordCountPair(d["word"].AsString, d["count"].AsInt32));
@@ -192,7 +180,7 @@ namespace NewsAggregator.BackgroundWorkers
 
         void INewsDatabase.InsertArticle(Article article)
         {
-            articles.Insert(article.toBson());
+            articles.Insert(article.toBson(), new MongoInsertOptions { Flags = InsertFlags.ContinueOnError, WriteConcern = WriteConcern.Unacknowledged });
         }
 
         void INewsDatabase.InsertArticles(List<Article> articles)
@@ -201,7 +189,7 @@ namespace NewsAggregator.BackgroundWorkers
             foreach (Article a in articles)
                 docs.Add(a.toBson());
 
-            this.articles.InsertBatch(docs);
+            this.articles.InsertBatch(docs, new MongoInsertOptions { Flags = InsertFlags.ContinueOnError, WriteConcern = WriteConcern.Unacknowledged });
         }
 
         void INewsDatabase.SaveCurrentWordsForHistory() //Todo: code doublication to UpdateCurrentWords
@@ -209,13 +197,13 @@ namespace NewsAggregator.BackgroundWorkers
             Dictionary<string, int> words = new Dictionary<string, int>();
 
             DateTime hoursAgo24 = DateTime.Now;
-            hoursAgo24.Subtract(new TimeSpan(24, 0, 0));
+            hoursAgo24 = hoursAgo24.Subtract(new TimeSpan(24, 0, 0));
 
             List<Article> articles = (this as INewsDatabase).GetArticles(hoursAgo24, DateTime.Now);
             foreach (Article a in articles)
                 ArticleProcessor.getArticleWords(a, ref words);
 
-            ArticleProcessor.removeCommonWords(cachedCommonWords, ref words);
+            ArticleProcessor.removeCommonWords((this as INewsDatabase).GetCommonWords(), ref words);
 
             List<BsonDocument> docs = new List<BsonDocument>();
             foreach (KeyValuePair<string, int> word in words)
@@ -235,13 +223,13 @@ namespace NewsAggregator.BackgroundWorkers
             Dictionary<string, int> words = new Dictionary<string, int>();
 
             DateTime hoursAgo24 = DateTime.Now;
-            hoursAgo24.Subtract(new TimeSpan(24, 0, 0));
+            hoursAgo24 = hoursAgo24.Subtract(new TimeSpan(24, 0, 0));
 
             List<Article> articles = (this as INewsDatabase).GetArticles(hoursAgo24, DateTime.Now);
             foreach(Article a in articles)
                 ArticleProcessor.getArticleWords(a, ref words);
 
-            ArticleProcessor.removeCommonWords(cachedCommonWords, ref words);
+            ArticleProcessor.removeCommonWords((this as INewsDatabase).GetCommonWords(), ref words);
 
             this.words.Remove(Query.EQ("date", "current"));
 
@@ -319,7 +307,12 @@ namespace NewsAggregator.BackgroundWorkers
 
         void INewsDatabase.InsertCommonWords(string word)
         {
-            commonWords.Insert(new BsonDocument(new BsonElement("word", word)));
+            commonWords.Insert(new BsonDocument(new BsonElement("word", word)), new MongoInsertOptions { Flags = InsertFlags.ContinueOnError, WriteConcern = WriteConcern.Unacknowledged });
+        }
+
+        void INewsDatabase.AddDownloadErrorToSource(TextSource source)
+        {
+            sources.Update(Query.EQ("id", source.getID()), Update.Inc("error", 1));
         }
     }
 }
