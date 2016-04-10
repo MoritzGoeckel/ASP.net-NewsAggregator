@@ -1,4 +1,5 @@
-﻿using NewsAggregator.Util;
+﻿using MongoDB.Bson;
+using NewsAggregator.Util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,9 +23,32 @@ namespace NewsAggregator.BackgroundWorkers.Model
             this.urls.AddRange(urls);
         }
 
+        public TextSource(BsonDocument bson)
+        {
+            this.Name = bson["name"].AsString;
+            this.Typ = bson["typ"].AsString; ;
+            this.Country = bson["country"].AsString;
+
+            foreach (BsonValue url in bson["urls"].AsBsonArray)
+                this.urls.Add(url.AsString);
+        }
+
         public string getID()
         {
             return (Name + Country).Replace(" ", "");
+        }
+
+        public BsonDocument toBson()
+        {
+            BsonDocument sourceDoc = new BsonDocument();
+            sourceDoc.Add(new BsonElement("name", Name));
+            sourceDoc.Add(new BsonElement("typ", Typ));
+            sourceDoc.Add(new BsonElement("country", Country));
+            sourceDoc.Add(new BsonElement("id", getID()));
+
+            sourceDoc.Add(new BsonElement("urls", new BsonArray(urls)));
+
+            return sourceDoc;
         }
     }
 }

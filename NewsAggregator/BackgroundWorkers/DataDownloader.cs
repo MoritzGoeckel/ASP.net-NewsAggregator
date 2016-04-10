@@ -11,14 +11,14 @@ namespace NewsAggregator.BackgroundWorkers
 {
     public class DataDownloader
     {
-        public List<TextSource> Sources = new List<TextSource>();
+        public List<TextSource> Sources;
 
-        public DataDownloader()
+        public DataDownloader(INewsDatabase database)
         {
-            LoadSources("BackgroundWorkers/Content/Sources.xml"); //Todo... richtig?
+            Sources = database.GetSources();
         }
 
-        public void LoadSources(string path)
+        /*public void LoadSources(string path) //Todo: what to do?
         {
             try
             {
@@ -34,7 +34,7 @@ namespace NewsAggregator.BackgroundWorkers
                 }
             }
             catch(Exception e) { throw new Exception("Cant load Sources!", e); }
-        }
+        }*/
 
         public List<Article> DownloadArticles()
         {
@@ -54,7 +54,7 @@ namespace NewsAggregator.BackgroundWorkers
             return articles;
         }
 
-        public TextSource CreateTextsourceFromXML(XmlNode xml)
+        /*public TextSource CreateTextsourceFromXML(XmlNode xml)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace NewsAggregator.BackgroundWorkers
             {
                 throw new Exception("Cant parse XML for TextSource!", e);
             }
-        }
+        }*/
 
         public List<Article> DownloadArticlesForSource(TextSource source)
         {

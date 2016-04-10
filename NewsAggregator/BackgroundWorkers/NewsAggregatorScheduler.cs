@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using NewsAggregator.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace NewsAggregator.BackgroundWorkers
 
         private NewsAggregatorScheduler()
         {
-            downloader = new DataDownloader();
-            database = new MongoFacade();
+            database = GlobalDataManager.getInstance().getDatabase();
+            downloader = new DataDownloader(database);
         }
 
         public void Start()

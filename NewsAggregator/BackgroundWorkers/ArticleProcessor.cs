@@ -18,6 +18,36 @@ namespace NewsAggregator.BackgroundWorkers
                 Source);
         }
 
+        public static void getArticleWords(Article article, ref Dictionary<string, int> wordsListToUpdate)
+        {
+            string[] words = article.Headline.Split(' ');
+
+            List<string> wordsOnlyOnce = new List<string>();
+            foreach (string w in words)
+                if (wordsOnlyOnce.Contains(w) == false)
+                    wordsOnlyOnce.Add(w);
+
+            foreach(string w in wordsOnlyOnce)
+            {
+                if(w != null && w != "" && w != " ")
+                {
+                    if (wordsListToUpdate.ContainsKey(w) == false)
+                        wordsListToUpdate.Add(w, 1);
+                    else
+                        wordsListToUpdate[w]++;
+                }
+            }
+        }
+
+        public static void removeCommonWords(Dictionary<string, bool> commonWords, ref Dictionary<string, int> wordsListToUpdate)
+        {
+            foreach(KeyValuePair<string, bool> commonWordPair in commonWords)
+            {
+                if (wordsListToUpdate.ContainsKey(commonWordPair.Key))
+                    wordsListToUpdate.Remove(commonWordPair.Key);
+            }
+        }
+
         public static string removeHTML(string text)
         {
             //Tags entfernen
