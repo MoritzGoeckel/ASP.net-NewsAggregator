@@ -24,7 +24,7 @@ namespace NewsAggregator.Controllers
             return database.GetWords(50, DateTimeHelper.UnixTimeStampToDateTime(date));
         }
 
-        public IEnumerable<DateCountPair> GetWords(string topic) //api/articles/topic
+        public IEnumerable<DateCountPair> GetWords(string topic) //api/words/topic
         {
             return database.GetWordStatistic(topic);
         }

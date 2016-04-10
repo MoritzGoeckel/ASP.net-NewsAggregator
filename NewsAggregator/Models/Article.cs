@@ -30,6 +30,7 @@ namespace NewsAggregator.BackgroundWorkers
             this.Source = database.GetSources()[bson["sourceid"].AsString];
             this.Summery = bson["summery"].AsString;
             this.PublishDate = DateTimeHelper.UnixTimeStampToDateTime(bson["published"].AsDouble);
+            this.DownloadDate = DateTimeHelper.UnixTimeStampToDateTime(bson["downloaded"].AsDouble);
             this.Url = bson["url"].AsString;
         }
 
@@ -45,7 +46,7 @@ namespace NewsAggregator.BackgroundWorkers
             articleDoc.Add(new BsonElement("sourceid", Source.getID()));
             articleDoc.Add(new BsonElement("summery", Summery));
             articleDoc.Add(new BsonElement("published", DateTimeHelper.DateTimeToUnixTimestamp(PublishDate)));
-            articleDoc.Add(new BsonElement("downloaded", DownloadDate));
+            articleDoc.Add(new BsonElement("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(DownloadDate)));
             articleDoc.Add(new BsonElement("url", Url));
             articleDoc.Add(new BsonElement("id", getID()));
 

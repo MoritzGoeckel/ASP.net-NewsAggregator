@@ -23,10 +23,11 @@ namespace NewsAggregator
             app.UseHangfireDashboard("/jobs");
             app.UseHangfireServer();
 
+            GlobalDataManager.getInstance().init(new MongoFacade());
+            
             NewsAggregatorScheduler scheduler = NewsAggregatorScheduler.getInstance();
             scheduler.Start();
 
-            GlobalDataManager.getInstance().init(new MongoFacade()); 
         }
     }
 }
