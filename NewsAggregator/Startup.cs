@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Owin;
 using Owin;
-
-using Hangfire;
 using NewsAggregator.Util;
 using NewsAggregator.BackgroundWorkers;
+using System.IO;
 
 [assembly: OwinStartup(typeof(NewsAggregator.Startup))]
 
@@ -16,14 +15,8 @@ namespace NewsAggregator
     {
         public void Configuration(IAppBuilder app)
         {
-            //Hangfire
-            GlobalConfiguration.Configuration
-                .UseSqlServerStorage(@"Server=(localdb)\MSSQLLocalDB; Database=hangfireDb;");
-
-            app.UseHangfireDashboard("/hangfire");
-            app.UseHangfireServer();
-
-            GlobalDataManager.getInstance().init(new MongoFacade(@"E:\Programmieren\C# Neu\NewsAggregator\Database\mongo\mongod.exe", @"E:\Programmieren\C# Neu\NewsAggregator\Database\data"));
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            GlobalDataManager.getInstance().init(new MongoFacade(path + @"Database\mongo\mongod.exe", path+ @"Database\data"));
             
             NewsAggregatorScheduler scheduler = NewsAggregatorScheduler.getInstance();
             scheduler.Start();

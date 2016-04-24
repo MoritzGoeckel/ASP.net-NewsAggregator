@@ -1,9 +1,11 @@
-﻿using Hangfire;
-using NewsAggregator.Util;
+﻿using NewsAggregator.Util;
+using Quartz;
+using Quartz.Impl;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace NewsAggregator.BackgroundWorkers
@@ -32,19 +34,55 @@ namespace NewsAggregator.BackgroundWorkers
         public void FirstTimeStart() //Do only once!
         {
             database.PrepareDB();
-            Importer.ImportSourcesFromXML(@"E:\Programmieren\C# Neu\NewsAggregator\NewsAggregator\Content\Sources.xml", database);
-            Importer.ImportCommonWordsFile(database, @"E:\Programmieren\C# Neu\NewsAggregator\NewsAggregator\Content\common_words.txt");
+            Importer.ImportSourcesFromXML(AppDomain.CurrentDomain.BaseDirectory + @"Content\Sources.xml", database);
+            Importer.ImportCommonWordsFile(database, AppDomain.CurrentDomain.BaseDirectory +@"Content\common_words.txt");
         }
 
         public void Start()
         {
-            RecurringJob.AddOrUpdate("UpdateJob", () => doUpdate(), "0 * * * *"); //Jede Stunde um X:00
-            RecurringJob.AddOrUpdate("SaveCurrentWordsToHistoryJob", () => saveCurrentWordsToHistory(), "0 23 * * *"); //Jeden Tag um 23:30
+            //RecurringJob.AddOrUpdate("UpdateJob", () => doUpdate(), "0 * * * *"); //Jede Stunde um X:00
+            //RecurringJob.AddOrUpdate("SaveCurrentWordsToHistoryJob", () => saveCurrentWordsToHistory(), "0 23 * * *"); //Jeden Tag um 23:30
+
+            Logger.Log("Starting up scheduler...");
+
+            ISchedulerFactory factory = new StdSchedulerFactory();
+            IScheduler scheduler = factory.GetScheduler();
+
+            //DoUpdate
+            IJobDetail doUpdateJob = JobBuilder.Create<doUpdateJob>()
+                .WithIdentity("doUpdate", "defaultGroup")
+                .Build();
+
+            ITrigger doUpdateTrigger = TriggerBuilder.Create()
+              .WithIdentity("doUpdateTrigger", "defaultGroup")
+              .StartNow()
+              .WithCronSchedule("0 0 * * * ?") //Jede Stunde um X:00
+              .Build();
+
+            scheduler.ScheduleJob(doUpdateJob, doUpdateTrigger);
+            
+            //SaveCurrentWordsToHistory
+            IJobDetail saveCurrentWordsToHistoryJob = JobBuilder.Create<saveCurrentWordsToHistoryJob>()
+                .WithIdentity("saveCurrentWordsToHistory", "defaultGroup")
+                .Build();
+
+            ITrigger saveCurrentWordsToHistoryTrigger = TriggerBuilder.Create()
+              .WithIdentity("saveCurrentWordsToHistoryTrigger", "defaultGroup")
+              .StartNow()
+              .WithCronSchedule("0 30 23 * * ?") //Jeden Tag um 23:30
+              .Build();
+
+            scheduler.ScheduleJob(saveCurrentWordsToHistoryJob, saveCurrentWordsToHistoryTrigger);
+            
+            scheduler.Start();
+
+            Logger.Log("Scheduler started");
         }
 
         public void doUpdate()
         {
-            try {
+            try
+            {
                 List<Article> articles = downloader.DownloadArticles();
                 database.InsertArticles(articles);
                 Logger.Log("Done saving the articles (doUpdate)");
@@ -68,6 +106,30 @@ namespace NewsAggregator.BackgroundWorkers
             catch (Exception e)
             {
                 throw new Exception("Fatal Exception in upper saveCurrentWordsToHistory!", e);
+            }
+        }
+
+        class doUpdateJob : IJob
+        {
+            public void Execute(IJobExecutionContext context)
+            {
+                new Thread(delegate () {
+                    Logger.Log("Start doUpdate");
+                    getInstance().doUpdate();
+                    Logger.Log("End doUpdate");
+                }).Start();
+            }
+        }
+
+        class saveCurrentWordsToHistoryJob : IJob
+        {
+            public void Execute(IJobExecutionContext context)
+            {
+                new Thread(delegate () {
+                    Logger.Log("Start saveCurrentWordsToHistory");
+                    getInstance().saveCurrentWordsToHistory();
+                    Logger.Log("End saveCurrentWordsToHistory");
+                }).Start();
             }
         }
     }
