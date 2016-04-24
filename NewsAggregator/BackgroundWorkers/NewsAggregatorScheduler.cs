@@ -45,9 +45,10 @@ namespace NewsAggregator.BackgroundWorkers
 
             Logger.Log("Starting up scheduler...");
 
-            ISchedulerFactory factory = new StdSchedulerFactory();
-            IScheduler scheduler = factory.GetScheduler();
+            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
 
+            scheduler.Start();
+            
             //DoUpdate
             IJobDetail doUpdateJob = JobBuilder.Create<doUpdateJob>()
                 .WithIdentity("doUpdate", "defaultGroup")
@@ -56,7 +57,10 @@ namespace NewsAggregator.BackgroundWorkers
             ITrigger doUpdateTrigger = TriggerBuilder.Create()
               .WithIdentity("doUpdateTrigger", "defaultGroup")
               .StartNow()
-              .WithCronSchedule("0 0 * * * ?") //Jede Stunde um X:00
+              .WithSimpleSchedule(x => x
+                .WithIntervalInHours(1)
+                .RepeatForever()) //Jede Stunde
+              .ForJob(doUpdateJob)
               .Build();
 
             scheduler.ScheduleJob(doUpdateJob, doUpdateTrigger);
@@ -69,13 +73,12 @@ namespace NewsAggregator.BackgroundWorkers
             ITrigger saveCurrentWordsToHistoryTrigger = TriggerBuilder.Create()
               .WithIdentity("saveCurrentWordsToHistoryTrigger", "defaultGroup")
               .StartNow()
-              .WithCronSchedule("0 30 23 * * ?") //Jeden Tag um 23:30
+              .WithCronSchedule("0 30 23 * * ?") //Immer um 23:30. Kp ob es geht Todo
+              .ForJob(saveCurrentWordsToHistoryJob)
               .Build();
 
             scheduler.ScheduleJob(saveCurrentWordsToHistoryJob, saveCurrentWordsToHistoryTrigger);
             
-            scheduler.Start();
-
             Logger.Log("Scheduler started");
         }
 

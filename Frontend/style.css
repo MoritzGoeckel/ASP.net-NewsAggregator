@@ -1,0 +1,68 @@
+#words, #articles{
+    text-transform: uppercase;
+    min-width: 700px;
+    width: 30%;
+    text-align: justify;
+    line-height: 45px;
+
+    display: inline-block;
+    margin-top: 2%;
+    //border: solid rgba(255, 219, 107, 0.52) 15px;
+    padding: 30px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+
+    border: solid rgb(41, 41, 41) 15px;
+
+    -webkit-box-shadow: 0px 15px 150px -20px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 15px 150px -20px rgba(0,0,0,0.5);
+    box-shadow: 0px 15px 150px -20px rgba(0,0,0,0.5);
+
+    font-family: Chunkfive;
+
+    //text-shadow: 0px 0px 1px rgba(150, 150, 150, 1);
+}
+
+#articles {
+    text-transform: none;
+    line-height: 25px;
+    padding-top: 20px;
+}
+
+#articles a:link{
+    text-decoration: none;
+    color: #0000d2;
+}
+
+#articles a:visited{
+    color: #0000d2;
+}
+
+#articles a:hover{
+    color: #ff0002;
+}
+
+#words a:link{
+    color: black;
+    text-decoration: none;
+}
+
+#words a:visited{
+    color: black;
+}
+
+#words a:hover{
+    color: black;
+    text-shadow: 0px 0px 2px rgba(150, 150, 150, 1);
+
+    border-bottom: 5px solid #ff0002;
+}
+
+@font-face {
+    font-family: Chunkfive;
+    src: url("Chunkfive.otf") format("opentype");
+}
+
+.sourceName{
+    font-size: 70%;
+}

@@ -15,7 +15,7 @@ namespace NewsAggregator.Controllers
 
         public IEnumerable<Article> GetAllArticles() //api/articles
         {
-            return database.GetArticles(DateTime.Now, 20);
+            return database.GetArticles(DateTime.Now, 50);
         }
 
         public IEnumerable<Article> GetArticle(int startDate, int endDate) //api/articles/start/end
@@ -25,7 +25,7 @@ namespace NewsAggregator.Controllers
 
         public IEnumerable<Article> GetArticle(string topic) //api/articles/topic
         {
-            return database.GetArticles(topic, DateTime.Now, 20);
+            return database.GetArticles(topic, DateTime.Now, 50);
         }
     }
 }

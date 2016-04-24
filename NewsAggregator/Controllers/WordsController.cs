@@ -16,12 +16,12 @@ namespace NewsAggregator.Controllers
 
         public IEnumerable<WordCountPair> GetAllWords() //api/words
         {
-            return database.GetCurrentWords(50);
+            return database.GetCurrentWords(100);
         }
 
         public IEnumerable<WordCountPair> GetWords(int date) //api/words/date
         {
-            return database.GetWords(50, DateTimeHelper.UnixTimeStampToDateTime(date));
+            return database.GetWords(100, DateTimeHelper.UnixTimeStampToDateTime(date));
         }
 
         public IEnumerable<DateCountPair> GetWords(string topic) //api/words/topic
