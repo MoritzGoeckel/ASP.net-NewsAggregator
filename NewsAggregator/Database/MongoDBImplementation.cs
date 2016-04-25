@@ -49,7 +49,8 @@ namespace NewsAggregator.BackgroundWorkers
 
         private string getSearchString(string word)
         {
-            return "[^ ]*" + word + "[^ ]*";
+            return ".*" + word + ".*"; //[^ ]*
+            //return "[^ ]*" + word + "[^ ]*";
         }
 
         void INewsDatabase.PrepareDB()
@@ -103,7 +104,7 @@ namespace NewsAggregator.BackgroundWorkers
             return returnArticles;
         }
 
-        List<Article> INewsDatabase.GetArticles(string word, DateTime to, int count)
+        List<Article> INewsDatabase.GetArticles(string word, DateTime to, int count) //Geht nicht TODO: ???
         {
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(

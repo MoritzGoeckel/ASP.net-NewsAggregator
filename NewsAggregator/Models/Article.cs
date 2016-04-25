@@ -47,7 +47,7 @@ namespace NewsAggregator.BackgroundWorkers
 
         public string getID()
         {
-            return Headline + "_" + DownloadDate + "_" + Source.getID();
+            return Headline + "_" + PublishDate + "_" + Source.getID();
         }
 
         public BsonDocument toBson()

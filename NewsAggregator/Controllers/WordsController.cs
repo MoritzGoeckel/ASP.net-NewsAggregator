@@ -14,16 +14,19 @@ namespace NewsAggregator.Controllers
     {
         private INewsDatabase database = GlobalDataManager.getInstance().getDatabase();
 
+        [Route("api/words")]
         public IEnumerable<WordCountPair> GetAllWords() //api/words
         {
             return database.GetCurrentWords(100);
         }
 
+        [Route("api/words/{date}")]
         public IEnumerable<WordCountPair> GetWords(int date) //api/words/date
         {
             return database.GetWords(100, DateTimeHelper.UnixTimeStampToDateTime(date));
         }
 
+        [Route("api/words/statistic/{topic}")]
         public IEnumerable<DateCountPair> GetWords(string topic) //api/words/topic
         {
             return database.GetWordStatistic(topic); //Todo: implement
