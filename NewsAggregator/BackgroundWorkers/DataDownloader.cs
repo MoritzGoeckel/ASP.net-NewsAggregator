@@ -56,9 +56,9 @@ namespace NewsAggregator.BackgroundWorkers
                             articles.Add(
                                 ArticleProcessor.processArticle(
                                         item.Title.Text,
-                                        item.Summary.Text,
-                                        (item.Links.Count > 0 ? item.Links[0].Uri.ToString() : ""),
-                                        item.PublishDate.DateTime,
+                                        (item.Summary != null ? item.Summary.Text : ""),
+                                        (item.Links != null && item.Links.Count > 0 ? item.Links[0].Uri.ToString() : ""),
+                                        (item.PublishDate != null ? item.PublishDate.DateTime : DateTime.Now),
                                         DateTime.Now,
                                         source)
                                     );

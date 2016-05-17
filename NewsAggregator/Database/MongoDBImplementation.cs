@@ -11,7 +11,7 @@ using NewsAggregator.Util;
 
 namespace NewsAggregator.BackgroundWorkers
 {
-    public class MongoFacade : INewsDatabase
+    public class MongoDBImplementation : INewsDatabase
     {
         //Todo: Idee Doubletten-Erkennung
 
@@ -26,7 +26,7 @@ namespace NewsAggregator.BackgroundWorkers
 
         MongoCollection articles, words, sources, commonWords;
 
-        public MongoFacade(string mongodPath, string databasePath)
+        public MongoDBImplementation(string mongodPath, string databasePath)
         {
             serverProcess = new Process();
             serverProcess.StartInfo.FileName = mongodPath;
@@ -49,8 +49,14 @@ namespace NewsAggregator.BackgroundWorkers
 
         private string getSearchString(string word)
         {
-            return ".*" + word + ".*"; //[^ ]*
-            //return "[^ ]*" + word + "[^ ]*";
+            return ".*[ -]" + word + ".*" + "|" +
+                   ".*" + word + "[ -].*" + "|" +
+
+                   ".*[ -]" + word.Substring(0, 1).ToUpper() + word.Substring(1) +".*" + "|" +
+                   ".*" + word.Substring(0, 1).ToUpper() + word.Substring(1) + "[ -].*" + "|" +
+
+                   ".*[ -]" + word.ToUpper() + ".*" + "|" +
+                   ".*" + word.ToUpper() + "[ -].*";
         }
 
         void INewsDatabase.PrepareDB()
@@ -137,16 +143,22 @@ namespace NewsAggregator.BackgroundWorkers
             return returnArticles;
         }
 
-        List<WordCountPair> INewsDatabase.GetWords(int count, string search)
-        {
-            //Todo: Complicated because I need to add up all double accuring words
-            throw new NotImplementedException();
-        }
-
         List<DateCountPair> INewsDatabase.GetWordStatistic(string word)
         {
-            //Todo: Generated Grahpic, cache it. Make it fast
-            throw new NotImplementedException();
+            List<DateCountPair> wordCountPairs = new List<DateCountPair>();
+
+            var results = words.FindAs<BsonDocument>(
+                Query.And(
+                    Query.GTE("date", DateTimeHelper.DateTimeToUnixTimestamp(DateTime.Now.Subtract(TimeSpan.FromDays(100)))),
+                    Query.Not(Query.EQ("date", "current")),
+                    Query.EQ("word", word)
+                    )
+                ).SetSortOrder(SortBy.Ascending("date"));
+
+            foreach (var wordDate in results)
+                wordCountPairs.Add(new DateCountPair(DateTimeHelper.UnixTimeStampToDateTime(wordDate["date"].AsDouble), wordDate["count"].AsInt32));
+
+            return wordCountPairs;
         }
 
         List<WordCountPair> INewsDatabase.GetCurrentWords(int count)
@@ -232,8 +244,6 @@ namespace NewsAggregator.BackgroundWorkers
 
             ArticleProcessor.removeCommonWords((this as INewsDatabase).GetCommonWords(), ref words);
 
-            this.words.Remove(Query.EQ("date", "current"));
-
             List<BsonDocument> docs = new List<BsonDocument>();
             foreach(KeyValuePair<string, int> word in words)
             {
@@ -244,6 +254,7 @@ namespace NewsAggregator.BackgroundWorkers
                 }));
             }
 
+            this.words.Remove(Query.EQ("date", "current"));
             this.words.InsertBatch(docs);
         }
 
@@ -313,7 +324,14 @@ namespace NewsAggregator.BackgroundWorkers
 
         void INewsDatabase.AddDownloadErrorToSource(TextSource source)
         {
-            sources.Update(Query.EQ("id", source.getID()), Update.Inc("error", 1));
+            sources.Update(Query.EQ("id", source.getID()), Update.Inc("error", 1)); //UpdateFlags.Multi
+        }
+
+        //Not implemented
+        List<WordCountPair> INewsDatabase.GetWords(int count, string search)
+        {
+            //Todo: Complicated because I need to add up all double accuring words ????
+            throw new NotImplementedException();
         }
     }
 }

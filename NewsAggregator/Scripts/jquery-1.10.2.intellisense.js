@@ -1133,7 +1133,8 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
     /// <signature>
     ///   <summary>Store arbitrary data associated with the matched elements.</summary>
-    ///   <param name="obj" type="Object">An object of key-value pairs of data to update.</param>
+    ///   <param name="obj" type="Object">An object of key-value pairs of data to 
+.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },

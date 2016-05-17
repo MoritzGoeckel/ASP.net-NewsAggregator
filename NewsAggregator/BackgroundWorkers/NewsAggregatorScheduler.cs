@@ -15,6 +15,8 @@ namespace NewsAggregator.BackgroundWorkers
         private DataDownloader downloader;
         private INewsDatabase database;
 
+        private IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
+
         private static NewsAggregatorScheduler instance;
         public static NewsAggregatorScheduler getInstance()
         {
@@ -44,19 +46,18 @@ namespace NewsAggregator.BackgroundWorkers
             //RecurringJob.AddOrUpdate("SaveCurrentWordsToHistoryJob", () => saveCurrentWordsToHistory(), "0 23 * * *"); //Jeden Tag um 23:30
 
             Logger.Log("Starting up scheduler...");
-
-            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
-
-            scheduler.Start();
             
             //DoUpdate
             IJobDetail doUpdateJob = JobBuilder.Create<doUpdateJob>()
                 .WithIdentity("doUpdate", "defaultGroup")
                 .Build();
 
+            DateTime n = DateTime.Now;
+            DateTime nextFullHour = new DateTime(n.Year, n.Month, n.Day, n.Hour + 1, 0, 0);
+
             ITrigger doUpdateTrigger = TriggerBuilder.Create()
               .WithIdentity("doUpdateTrigger", "defaultGroup")
-              .StartNow()
+              .StartAt(nextFullHour)
               .WithSimpleSchedule(x => x
                 .WithIntervalInHours(1)
                 .RepeatForever()) //Jede Stunde
@@ -70,15 +71,21 @@ namespace NewsAggregator.BackgroundWorkers
                 .WithIdentity("saveCurrentWordsToHistory", "defaultGroup")
                 .Build();
 
+            DateTime todayAt2330 = new DateTime(n.Year, n.Month, n.Day, 23, 30, 0);
+
             ITrigger saveCurrentWordsToHistoryTrigger = TriggerBuilder.Create()
               .WithIdentity("saveCurrentWordsToHistoryTrigger", "defaultGroup")
-              .StartNow()
-              .WithCronSchedule("0 30 23 * * ?") //Immer um 23:30. Kp ob es geht Todo
+              .StartAt(todayAt2330)
+              //.WithCronSchedule("0 30 23 * * ?") //Geht nicht
+              .WithSimpleSchedule(x => x
+                .WithIntervalInHours(24)
+                .RepeatForever())
               .ForJob(saveCurrentWordsToHistoryJob)
               .Build();
 
             scheduler.ScheduleJob(saveCurrentWordsToHistoryJob, saveCurrentWordsToHistoryTrigger);
-            
+
+            scheduler.Start();
             Logger.Log("Scheduler started");
         }
 
