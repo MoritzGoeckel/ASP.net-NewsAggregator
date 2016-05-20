@@ -210,3 +210,11 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+NewsAggregator/Database/data/local.0
+NewsAggregator/Database/data/local.ns
+NewsAggregator/Database/data/mongod.lock
+NewsAggregator/Database/data/testDB.0
+NewsAggregator/Database/data/testDB.ns
+NewsAggregator/Database/mongo/mongod.exe - Verknüpfung.lnk
+NewsAggregator/log.txt
+NewsAggregator/test.txt
