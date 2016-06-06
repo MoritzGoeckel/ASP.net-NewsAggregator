@@ -35,8 +35,8 @@ function setWord(word, element)
     $(".word").removeClass("activeWord");
     $(element).toggleClass("activeWord");
 
-    $("#articles").hide();
-    $("#statistics").hide();
+    //$("#articles").hide();
+    //$("#statistics").hide();
 
     $("#leftContainer").removeClass("col-md-offset-3");
 
