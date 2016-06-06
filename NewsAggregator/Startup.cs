@@ -6,6 +6,7 @@ using Owin;
 using NewsAggregator.Util;
 using NewsAggregator.BackgroundWorkers;
 using System.IO;
+using NewsAggregator.Database;
 
 [assembly: OwinStartup(typeof(NewsAggregator.Startup))]
 
@@ -19,7 +20,7 @@ namespace NewsAggregator
         public void Configuration(IAppBuilder app)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            GlobalDataManager.getInstance().init(new MongoDBImplementation(path + @"Database\mongo\mongod.exe", path + @"Database\data"));
+            GlobalDataManager.getInstance().setData(new MongoDBImplementation(path + @"Database\mongo\mongod.exe", path + @"Database\data"), new DatabaseCache());
 
             scheduler = NewsAggregatorScheduler.getInstance();
             scheduler.Start();

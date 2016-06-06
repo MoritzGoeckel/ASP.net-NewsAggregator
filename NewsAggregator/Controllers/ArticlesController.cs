@@ -1,4 +1,5 @@
 ﻿using NewsAggregator.BackgroundWorkers;
+using NewsAggregator.Database;
 using NewsAggregator.Util;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace NewsAggregator.Controllers
     public class ArticlesController : ApiController
     {
         private INewsDatabase database = GlobalDataManager.getInstance().getDatabase();
+        private DatabaseCache cache = GlobalDataManager.getInstance().getCache();
 
         [Route("api/articles")]
         public IEnumerable<Article> GetAllArticles() //api/articles
@@ -28,7 +30,8 @@ namespace NewsAggregator.Controllers
         [Route("api/articles/{topic}")]
         public IEnumerable<Article> GetArticle(string topic) //api/articles/topic
         {
-            return database.GetArticles(topic, DateTime.Now, 50);
+            return cache.getArticlesToWord(topic);
+            //return database.GetArticles(topic, DateTime.Now, 50);
         }
     }
 }

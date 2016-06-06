@@ -236,6 +236,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BackgroundWorkers\ArticleProcessor.cs" />
     <Compile Include="BackgroundWorkers\DataDownloader.cs" />
+    <Compile Include="Database\DatabaseCache.cs" />
     <Compile Include="Models\DateCountPair.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Database\INewsDatabase.cs" />

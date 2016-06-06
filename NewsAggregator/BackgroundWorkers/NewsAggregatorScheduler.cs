@@ -1,4 +1,6 @@
-﻿using NewsAggregator.Util;
+﻿using NewsAggregator.BackgroundWorkers.Model;
+using NewsAggregator.Database;
+using NewsAggregator.Util;
 using Quartz;
 using Quartz.Impl;
 using System;
@@ -7,13 +9,15 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using System.Web.Hosting;
 
 namespace NewsAggregator.BackgroundWorkers
 {
-    public class NewsAggregatorScheduler
+    public class NewsAggregatorScheduler : IRegisteredObject
     {
         private DataDownloader downloader;
         private INewsDatabase database;
+        private DatabaseCache cache;
 
         private IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
 
@@ -29,8 +33,13 @@ namespace NewsAggregator.BackgroundWorkers
         private NewsAggregatorScheduler()
         {
             database = GlobalDataManager.getInstance().getDatabase();
+            cache = GlobalDataManager.getInstance().getCache();
+
             //FirstTimeStart();
             downloader = new DataDownloader(database);
+            HostingEnvironment.RegisterObject(this);
+
+            cache.UpdateCache(database);
         }
 
         public void FirstTimeStart() //Do only once!
@@ -76,7 +85,6 @@ namespace NewsAggregator.BackgroundWorkers
             ITrigger saveCurrentWordsToHistoryTrigger = TriggerBuilder.Create()
               .WithIdentity("saveCurrentWordsToHistoryTrigger", "defaultGroup")
               .StartAt(todayAt2330)
-              //.WithCronSchedule("0 30 23 * * ?") //Geht nicht
               .WithSimpleSchedule(x => x
                 .WithIntervalInHours(24)
                 .RepeatForever())
@@ -99,6 +107,8 @@ namespace NewsAggregator.BackgroundWorkers
 
                 database.UpdateCurrentWords();
                 Logger.Log("Done updating words");
+
+                cache.UpdateCache(database);
             }
             catch (Exception e)
             {
@@ -117,6 +127,11 @@ namespace NewsAggregator.BackgroundWorkers
             {
                 throw new Exception("Fatal Exception in upper saveCurrentWordsToHistory!", e);
             }
+        }
+
+        public void Stop(bool immediate)
+        {
+            HostingEnvironment.UnregisterObject(this);
         }
 
         class doUpdateJob : IJob

@@ -1,5 +1,6 @@
 ﻿using NewsAggregator.BackgroundWorkers;
 using NewsAggregator.BackgroundWorkers.Model;
+using NewsAggregator.Database;
 using NewsAggregator.Util;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace NewsAggregator.Controllers
     public class WordsController : ApiController
     {
         private INewsDatabase database = GlobalDataManager.getInstance().getDatabase();
+        private DatabaseCache cache = GlobalDataManager.getInstance().getCache();
 
         [Route("api/words")]
         public IEnumerable<WordCountPair> GetAllWords() //api/words
         {
-            return database.GetCurrentWords(100);
+            //return database.GetCurrentWords(100);
+            return cache.getCurrentWords();
         }
 
         [Route("api/words/{date}")]

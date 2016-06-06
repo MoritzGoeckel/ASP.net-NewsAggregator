@@ -149,7 +149,7 @@ namespace NewsAggregator.BackgroundWorkers
 
             var results = words.FindAs<BsonDocument>(
                 Query.And(
-                    Query.GTE("date", DateTimeHelper.DateTimeToUnixTimestamp(DateTime.Now.Subtract(TimeSpan.FromDays(100)))),
+                    //Query.GTE("date", DateTimeHelper.DateTimeToUnixTimestamp(DateTime.Now.Subtract(TimeSpan.FromDays(100)))),
                     Query.Not(Query.EQ("date", "current")),
                     Query.EQ("word", word)
                     )
@@ -164,7 +164,7 @@ namespace NewsAggregator.BackgroundWorkers
         List<WordCountPair> INewsDatabase.GetCurrentWords(int count)
         {
             List<WordCountPair> returnWords = new List<WordCountPair>();
-            var docs = words.FindAs<BsonDocument>(Query.EQ("date", "current"))
+            var docs = words.FindAs<BsonDocument>(Query.And(Query.EQ("date", "current"), Query.GTE("count", 10)))
                 .SetSortOrder(SortBy.Descending("count"))
                 .SetLimit(count);
 
