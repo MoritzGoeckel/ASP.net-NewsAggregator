@@ -266,6 +266,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Frontend\bigtext.js" />
+    <Content Include="Frontend\chart.js" />
     <Content Include="Frontend\index.html" />
     <Content Include="Frontend\jquery.fittext.js" />
     <Content Include="Frontend\style.css" />
