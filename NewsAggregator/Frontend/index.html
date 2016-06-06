@@ -2,10 +2,9 @@
 	<header>
 		<title>Trending News</title>
         <meta charset="UTF-8">
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-                <script src="bigtext.js"></script>
-                <script src="jquery.fittext.js"></script>
-				<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="bigtext.js"></script>
+        <script src="jquery.fittext.js"></script>
         <script src="today.js"></script>
         <script src="chart.js"></script>
 
@@ -18,17 +17,24 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" type="text/css" href="style.css">
+
 	</header>
 	<body>
 
-        <div id="wrapper" style="text-align: center;">
-            <div id="words"></div><br />
+        <div class="container-fluid">
 
-            <div id="statistics">
-                <canvas id="chartCanvas"></canvas>
+            <div class="col-md-6 col-md-offset-3" id="leftContainer">
+                <div id="words"></div>
+
+                <div id="statistics">
+                    <canvas id="chartCanvas"></canvas>
+                </div>
             </div>
 
-            <div id="articles"></div>
+            <div class="col-md-6">
+                <div id="articles"></div>
+            </div>
         </div>
 
 	</body>

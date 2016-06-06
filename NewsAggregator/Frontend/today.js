@@ -38,6 +38,8 @@ function setWord(word, element)
     $("#articles").hide();
     $("#statistics").hide();
 
+    $("#leftContainer").removeClass("col-md-offset-3");
+
     //statistic
     $.getJSON(url + "words/statistic/" + word, function( data ) {
         console.log(url + "words/statistic/" + word);
@@ -93,9 +95,13 @@ function setWord(word, element)
         console.log(url + "articles/" + word);
         console.log(data);
 
+        count = 0;
         var output = "";
-        $.each( data, function(key, val ) {
-            output += "<a href='"+val.Url+"'>"+shortStr(val.Headline, 60)+"</a> <span class='sourceName'>["+shortStr(val.Source.Name, 20)+"]</span><br />";
+        $.each(data, function (key, val) {
+            if (count < 400)
+                output += "<a href='" + val.Url + "'>" + shortStr(val.Headline, 60) + "</a> <span class='sourceName'>[" + shortStr(val.Source.Name, 20) + "]</span><br />";
+
+            count++;
         });
 
         $("#articles").html(output);
