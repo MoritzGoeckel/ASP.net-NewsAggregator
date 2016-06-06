@@ -150,13 +150,15 @@ namespace NewsAggregator.BackgroundWorkers
             var results = words.FindAs<BsonDocument>(
                 Query.And(
                     //Query.GTE("date", DateTimeHelper.DateTimeToUnixTimestamp(DateTime.Now.Subtract(TimeSpan.FromDays(100)))),
-                    Query.Not(Query.EQ("date", "current")),
                     Query.EQ("word", word)
                     )
                 ).SetSortOrder(SortBy.Ascending("date"));
 
             foreach (var wordDate in results)
-                wordCountPairs.Add(new DateCountPair(DateTimeHelper.UnixTimeStampToDateTime(wordDate["date"].AsDouble), wordDate["count"].AsInt32));
+                if(wordDate["date"].IsString && wordDate["date"].AsString == "current")
+                    wordCountPairs.Add(new DateCountPair(DateTime.Now, wordDate["count"].AsInt32));
+                else
+                    wordCountPairs.Add(new DateCountPair(DateTimeHelper.UnixTimeStampToDateTime(wordDate["date"].AsDouble), wordDate["count"].AsInt32));
 
             return wordCountPairs;
         }

@@ -32,7 +32,8 @@ namespace NewsAggregator.Controllers
         [Route("api/words/statistic/{topic}")]
         public IEnumerable<DateCountPair> GetWords(string topic) //api/words/topic
         {
-            return database.GetWordStatistic(topic); //Todo: implement
+            return cache.GetWordStatistic(topic);
+            //return database.GetWordStatistic(topic); //Todo: implement
         }
     }
 }
