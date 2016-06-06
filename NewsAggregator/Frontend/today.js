@@ -6,6 +6,7 @@ var uppercaseThreshold = 0.7;
 
 $(function(){
     $("#articles").hide();
+    $("#statistics").hide();
 
     $.getJSON(url + "words", function( data ) {
         console.log(url + "words");
@@ -35,7 +36,59 @@ function setWord(word, element)
     $(element).toggleClass("activeWord");
 
     $("#articles").hide();
+    $("#statistics").hide();
 
+    //statistic
+    $.getJSON(url + "words/statistic/" + word, function( data ) {
+        console.log(url + "words/statistic/" + word);
+        console.log(data);
+
+        var xData = [];
+        var yData = [];
+
+        i = 0;
+        $.each( data, function(key, val ) {
+            xData.push(val.date.substr(0, 10));
+            yData.push({ y: val.count, x: Date.parse(val.date) });
+        });
+
+        var ctx = document.getElementById("chartCanvas").getContext("2d");
+
+        if (typeof theLineChart !== 'undefined') {
+            theLineChart.destroy();
+        }
+
+        theLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: xData,
+                datasets: [{
+                    label: 'Artikel',
+                    data: yData,
+                    lineTension: 0.2,
+                    borderColor: '#0000d2',
+                    backgroundColor: 'rgba(0,0,0,0.1)'
+                }],
+                options: {
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom',
+                        }]
+                    }
+                }
+            },
+            options: {
+                legend: {
+                    display: false
+                }
+            }
+        });
+
+        $("#statistics").show();
+    });
+
+    //Articles
     $.getJSON(url + "articles/" + word, function( data ) {
         console.log(url + "articles/" + word);
         console.log(data);
