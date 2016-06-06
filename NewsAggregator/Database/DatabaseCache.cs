@@ -3,6 +3,7 @@ using NewsAggregator.BackgroundWorkers.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Hosting;
 
@@ -63,7 +64,9 @@ namespace NewsAggregator.Database
             setCurrentWords(words);
 
             foreach (WordCountPair pair in words)
-                setArticles(pair.Word, database.GetArticles(pair.Word, DateTime.Now, 50));
+                new Thread(delegate () {
+                    setArticles(pair.Word, database.GetArticles(pair.Word, DateTime.Now, 50));
+                }).Start();
         }
     }
 }

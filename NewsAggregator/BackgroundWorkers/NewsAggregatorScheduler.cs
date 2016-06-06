@@ -38,8 +38,6 @@ namespace NewsAggregator.BackgroundWorkers
             //FirstTimeStart();
             downloader = new DataDownloader(database);
             HostingEnvironment.RegisterObject(this);
-
-            cache.UpdateCache(database);
         }
 
         public void FirstTimeStart() //Do only once!
@@ -54,8 +52,6 @@ namespace NewsAggregator.BackgroundWorkers
             //RecurringJob.AddOrUpdate("UpdateJob", () => doUpdate(), "0 * * * *"); //Jede Stunde um X:00
             //RecurringJob.AddOrUpdate("SaveCurrentWordsToHistoryJob", () => saveCurrentWordsToHistory(), "0 23 * * *"); //Jeden Tag um 23:30
 
-            Logger.Log("Starting up scheduler...");
-            
             //DoUpdate
             IJobDetail doUpdateJob = JobBuilder.Create<doUpdateJob>()
                 .WithIdentity("doUpdate", "defaultGroup")
@@ -94,7 +90,6 @@ namespace NewsAggregator.BackgroundWorkers
             scheduler.ScheduleJob(saveCurrentWordsToHistoryJob, saveCurrentWordsToHistoryTrigger);
 
             scheduler.Start();
-            Logger.Log("Scheduler started");
         }
 
         public void doUpdate()
@@ -109,6 +104,7 @@ namespace NewsAggregator.BackgroundWorkers
                 Logger.Log("Done updating words");
 
                 cache.UpdateCache(database);
+                Logger.Log("Done cache update");
             }
             catch (Exception e)
             {

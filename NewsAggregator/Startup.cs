@@ -7,6 +7,7 @@ using NewsAggregator.Util;
 using NewsAggregator.BackgroundWorkers;
 using System.IO;
 using NewsAggregator.Database;
+using System.Web.Hosting;
 
 [assembly: OwinStartup(typeof(NewsAggregator.Startup))]
 
@@ -22,8 +23,14 @@ namespace NewsAggregator
             string path = AppDomain.CurrentDomain.BaseDirectory;
             GlobalDataManager.getInstance().setData(new MongoDBImplementation(path + @"Database\mongo\mongod.exe", path + @"Database\data"), new DatabaseCache());
 
+            Logger.Log("Starting up scheduler...");
             scheduler = NewsAggregatorScheduler.getInstance();
             scheduler.Start();
+            Logger.Log("Scheduler started");
+            
+            Logger.Log("Starting cache update...");
+            GlobalDataManager.getInstance().getCache().UpdateCache(GlobalDataManager.getInstance().getDatabase());
+            Logger.Log("Done cache update");
         }
     }
 }
