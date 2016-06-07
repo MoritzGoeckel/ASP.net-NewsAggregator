@@ -18,7 +18,7 @@
 }
 
 #statistics{
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     padding-top: 40px;
 }
 
@@ -58,7 +58,9 @@
 }
 
 .activeWord{
-    border-bottom: 5px solid #0000d2;
+    /*border-bottom: 5px solid #0000d2;*/
+    color: #ff0002 !important;
+    border-bottom: 5px solid #ff0002;
 }
 
 @font-face {
@@ -72,4 +74,10 @@
 
 body{
     font-size: 18px;
+}
+
+h1{
+    padding-left: 33px;
+    font-size: 70px;
+    color: #ff0002;
 }

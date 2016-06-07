@@ -5,8 +5,9 @@ var minWordSize = 15;
 var uppercaseThreshold = 0.7;
 
 $(function(){
-    $("#articles").hide();
-    $("#statistics").hide();
+    $(".artikelSection").hide();
+    $(".verlaufSection").hide();
+
 
     $.getJSON(url + "words", function( data ) {
         console.log(url + "words");
@@ -38,7 +39,7 @@ function setWord(word, element)
     //$("#articles").hide();
     //$("#statistics").hide();
 
-    $("#leftContainer").removeClass("col-md-offset-3");
+    //$("#leftContainer").removeClass("col-md-offset-3");
 
     //statistic
     $.getJSON(url + "words/statistic/" + word, function( data ) {
@@ -87,7 +88,7 @@ function setWord(word, element)
             }
         });
 
-        $("#statistics").show();
+        $(".verlaufSection").show();
     });
 
     //Articles
@@ -99,13 +100,13 @@ function setWord(word, element)
         var output = "";
         $.each(data, function (key, val) {
             if (count < 400)
-                output += "<a href='" + val.Url + "'>" + shortStr(val.Headline, 60) + "</a> <span class='sourceName'>[" + shortStr(val.Source.Name, 20) + "]</span><br />";
+                output += "<a href='" + val.Url + "'>" + shortStr(val.Headline, 70) + "</a> <span class='sourceName'>[" + shortStr(val.Source.Name, 20) + "]</span><br />";
 
             count++;
         });
 
         $("#articles").html(output);
-        $("#articles").show();
+        $(".artikelSection").show();
     });
 }
 
