@@ -55,6 +55,8 @@ function setWord(word, element)
             yData.push({ y: val.count, x: Date.parse(val.date) });
         });
 
+        $(".verlaufSection").show('slide', { direction: 'left' }, 300);
+
         var ctx = document.getElementById("chartCanvas").getContext("2d");
 
         if (typeof theLineChart !== 'undefined') {
@@ -87,8 +89,6 @@ function setWord(word, element)
                 }
             }
         });
-
-        $(".verlaufSection").show();
     });
 
     //Articles
@@ -106,7 +106,7 @@ function setWord(word, element)
         });
 
         $("#articles").html(output);
-        $(".artikelSection").show();
+        $(".artikelSection").show('slide', { direction: 'right' }, 300);
     });
 }
 
