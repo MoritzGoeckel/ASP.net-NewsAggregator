@@ -116,7 +116,7 @@ namespace NewsAggregator.BackgroundWorkers
             var docs = articles.FindAs<BsonDocument>(
                 Query.And(
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to)),
-                    Query.Or(Query.Matches("headline", getSearchString(word)), Query.Matches("summery", getSearchString(word)))
+                    Query.Or(Query.Matches("headline", getSearchString(word))) //, Query.Matches("summery", getSearchString(word))
                     )
                 ).SetLimit(count);
 
@@ -133,7 +133,7 @@ namespace NewsAggregator.BackgroundWorkers
                 Query.And(
                     Query.GT("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(from)),
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to)),
-                    Query.Or(Query.Matches("headline", getSearchString(word)), Query.Matches("summery", getSearchString(word)))
+                    Query.Or(Query.Matches("headline", getSearchString(word))) //, Query.Matches("summery", getSearchString(word))
                     )
                 ).SetLimit(count);
 
