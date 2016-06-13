@@ -163,22 +163,22 @@ namespace NewsAggregator.BackgroundWorkers
             return wordCountPairs;
         }
 
-        List<WordCountPair> INewsDatabase.GetCurrentWords(int count)
+        List<WordData> INewsDatabase.GetCurrentWords(int count)
         {
-            List<WordCountPair> returnWords = new List<WordCountPair>();
+            List<WordData> returnWords = new List<WordData>();
             var docs = words.FindAs<BsonDocument>(Query.And(Query.EQ("date", "current"), Query.GTE("count", 10)))
                 .SetSortOrder(SortBy.Descending("count"))
                 .SetLimit(count);
 
             foreach(var d in docs)
-                returnWords.Add(new WordCountPair(d["word"].AsString, d["count"].AsInt32));
+                returnWords.Add(new WordData(d["word"].AsString, d["count"].AsInt32, "#"));
 
             return returnWords;
         }
 
-        List<WordCountPair> INewsDatabase.GetWords(int count, DateTime date)
+        List<WordData> INewsDatabase.GetWords(int count, DateTime date)
         {
-            List <WordCountPair> returnWords = new List<WordCountPair>();
+            List <WordData> returnWords = new List<WordData>();
             var docs = words.FindAs<BsonDocument>(
                 Query.And(
                     Query.GT("date", DateTimeHelper.DateTimeToUnixTimestamp(date.Subtract(new TimeSpan(24, 0, 0)))),
@@ -188,7 +188,7 @@ namespace NewsAggregator.BackgroundWorkers
                 .SetLimit(count);
 
             foreach (var d in docs)
-                returnWords.Add(new WordCountPair(d["word"].AsString, d["count"].AsInt32));
+                returnWords.Add(new WordData(d["word"].AsString, d["count"].AsInt32, "#"));
 
             return returnWords;
         }
@@ -330,7 +330,7 @@ namespace NewsAggregator.BackgroundWorkers
         }
 
         //Not implemented
-        List<WordCountPair> INewsDatabase.GetWords(int count, string search)
+        List<WordData> INewsDatabase.GetWords(int count, string search)
         {
             //Todo: Complicated because I need to add up all double accuring words ????
             throw new NotImplementedException();

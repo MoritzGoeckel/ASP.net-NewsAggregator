@@ -6,15 +6,17 @@ using System.Web;
 namespace NewsAggregator.BackgroundWorkers.Model
 {
     [Serializable]
-    public class WordCountPair
+    public class WordData
     {
-        public WordCountPair(string Word, int Count)
+        public WordData(string Word, int Count, string imgUrl)
         {
             this.Word = Word;
             this.Count = Count;
+            this.imgUrl = imgUrl;
         }
 
         public string Word;
         public int Count;
+        public string imgUrl;
     }
 }

@@ -242,7 +242,7 @@
     <Compile Include="Database\INewsDatabase.cs" />
     <Compile Include="Models\TextSource.cs" />
     <Compile Include="Database\MongoDBImplementation.cs" />
-    <Compile Include="Models\WordCountPair.cs" />
+    <Compile Include="Models\WordData.cs" />
     <Compile Include="BackgroundWorkers\NewsAggregatorScheduler.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\WordsController.cs" />
@@ -256,6 +256,7 @@
     <Compile Include="Util\GlobalDataManager.cs" />
     <Compile Include="Util\Importer.cs" />
     <Compile Include="Util\Logger.cs" />
+    <Compile Include="Util\MoritzImageSearchAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

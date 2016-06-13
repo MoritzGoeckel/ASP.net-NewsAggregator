@@ -17,14 +17,14 @@ namespace NewsAggregator.Controllers
         private DatabaseCache cache = GlobalDataManager.getInstance().getCache();
 
         [Route("api/words")]
-        public IEnumerable<WordCountPair> GetAllWords() //api/words
+        public IEnumerable<WordData> GetAllWords() //api/words
         {
             //return database.GetCurrentWords(100);
             return cache.getCurrentWords();
         }
 
         [Route("api/words/{date}")]
-        public IEnumerable<WordCountPair> GetWords(int date) //api/words/date
+        public IEnumerable<WordData> GetWords(int date) //api/words/date
         {
             return database.GetWords(100, DateTimeHelper.UnixTimeStampToDateTime(date));
         }

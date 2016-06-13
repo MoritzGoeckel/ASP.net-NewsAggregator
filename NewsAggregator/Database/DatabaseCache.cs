@@ -1,5 +1,6 @@
 ﻿using NewsAggregator.BackgroundWorkers;
 using NewsAggregator.BackgroundWorkers.Model;
+using NewsAggregator.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,10 @@ namespace NewsAggregator.Database
     public class DatabaseCache : IRegisteredObject
     {
         private Dictionary<string, List<Article>> articles = new Dictionary<string, List<Article>>();
-        private List<WordCountPair> words = new List<WordCountPair>();
+        private List<WordData> words = new List<WordData>();
+
+        private Dictionary<string, string> WordImageUrls = new Dictionary<string, string>();
+
         private Dictionary<string, List<DateCountPair>> wordStatistics = new Dictionary<string, List<DateCountPair>>();
 
         public DatabaseCache()
@@ -57,12 +61,12 @@ namespace NewsAggregator.Database
             return this.articles[word];
         }
 
-        public IEnumerable<WordCountPair> getCurrentWords()
+        public IEnumerable<WordData> getCurrentWords()
         {
             return words;
         }
 
-        private void setCurrentWords(List<WordCountPair> words)
+        private void setCurrentWords(List<WordData> words)
         {
             this.words = words;
         }
@@ -77,10 +81,10 @@ namespace NewsAggregator.Database
         {
             clearCache();
 
-            List<WordCountPair> words = database.GetCurrentWords(wordsCount);
+            List<WordData> words = database.GetCurrentWords(wordsCount);
             setCurrentWords(words);
 
-            foreach (WordCountPair pair in words)
+            foreach (WordData pair in words)
             {
                 new Thread(delegate ()
                 {
@@ -91,6 +95,29 @@ namespace NewsAggregator.Database
                 {
                     setStatistic(pair.Word, database.GetWordStatistic(pair.Word));
                 }).Start();
+            }
+
+            new Thread(delegate ()
+            {
+                UpdateWordImageUrls();
+            }).Start();
+        }
+
+        public void UpdateWordImageUrls()
+        {
+            foreach (WordData word in words)
+            {
+                try {
+                    if (WordImageUrls.ContainsKey(word.Word) == false)
+                    {
+                        List<string> urls = MoritzImageSearchAPI.getGoogleImageSearchResult(word.Word);
+                        string theUrl = (urls.Count != 0 ? urls[0] : "#");
+                        WordImageUrls.Add(word.Word, theUrl);
+                    }
+
+                    word.imgUrl = WordImageUrls[word.Word];
+                }
+                catch { }
             }
         }
     }

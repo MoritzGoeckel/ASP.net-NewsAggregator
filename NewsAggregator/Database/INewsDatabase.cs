@@ -22,11 +22,11 @@ namespace NewsAggregator.BackgroundWorkers
 
 
         void SaveCurrentWordsForHistory(); //Save the "GetCurrentWords" to the "GetWords" //Only once a Day
-        List<WordCountPair> GetWords(int count, DateTime to);
-        List<WordCountPair> GetWords(int count, string search);
+        List<WordData> GetWords(int count, DateTime to);
+        List<WordData> GetWords(int count, string search);
 
         void UpdateCurrentWords();
-        List<WordCountPair> GetCurrentWords(int count);
+        List<WordData> GetCurrentWords(int count);
 
         List<DateCountPair> GetWordStatistic(string word);
 
