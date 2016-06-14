@@ -138,7 +138,7 @@ function setWord(index, element)
 
     var bilderHTML = "";
     $.each(word.imgUrls, function (key, val) {
-        bilderHTML += "<a target='_blank' href='https://www.google.de/search?q=" + word.Word + "&safe=off&tbm=isch'><img src='" + val + "' /></a>";
+        bilderHTML += "<a target='_blank' href='https://www.google.de/search?q=" + word.Word + "&safe=off&tbm=isch&tbs=qdr:d'><img src='" + val + "' /></a>";
     });
     $("#bilder").html(bilderHTML);
 }
