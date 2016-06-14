@@ -4,6 +4,8 @@ var maxWordSize = 40;
 var minWordSize = 15;
 var uppercaseThreshold = 0.7;
 
+var words;
+
 $(function(){
     $(".artikelSection").hide();
     $(".verlaufSection").hide();
@@ -16,23 +18,33 @@ $(function(){
         var max = data[0].Count;
         var min = data[data.length - 1].Count;
 
+        words = data;
+
         var output = "";
+        var index = 0;
         $.each( data, function(key, val ) {
             var proportionalSize = ((val.Count - min) / (max - min));
             var square = (proportionalSize + 1) * (proportionalSize + 1);
 
-            output += "<a href='#' onclick='setWord(\""+val.Word+"\", this);' class='word'><span style='font-size: " + ((proportionalSize * (maxWordSize - minWordSize)) + minWordSize) +"px; "
+            output += "<a href='#' onclick='setWord("+index+", this);' class='word'><span style='font-size: " + ((proportionalSize * (maxWordSize - minWordSize)) + minWordSize) +"px; "
                 + "line-height: " + (square < 1.3 ? square : 1.3) + ";"
                 + (proportionalSize > uppercaseThreshold ? "text-transform: uppercase;" : "") + "' >"
                 + val.Word + "</span></a> ";
+
+            index++;
         });
 
         $("#words").html(output);
     });
 });
 
-function setWord(word, element)
+function setWord(index, element)
 {
+    var word = words[index];
+    console.log(word);
+
+    /*$('body').css('backgroundImage', 'url(' + word.imgUrl + ')');*/
+
     $(".word").removeClass("activeWord");
     $(element).toggleClass("activeWord");
 
@@ -42,8 +54,8 @@ function setWord(word, element)
     //$("#leftContainer").removeClass("col-md-offset-3");
 
     //statistic
-    $.getJSON(url + "words/statistic/" + word, function( data ) {
-        console.log(url + "words/statistic/" + word);
+    $.getJSON(url + "words/statistic/" + word.Word, function( data ) {
+        console.log(url + "words/statistic/" + word.Word);
         console.log(data);
 
         var xData = [];
@@ -92,8 +104,8 @@ function setWord(word, element)
     });
 
     //Articles
-    $.getJSON(url + "articles/" + word, function( data ) {
-        console.log(url + "articles/" + word);
+    $.getJSON(url + "articles/" + word.Word, function (data) {
+        console.log(url + "articles/" + word.Word);
         console.log(data);
 
         count = 0;
