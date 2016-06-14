@@ -8,15 +8,14 @@ namespace NewsAggregator.BackgroundWorkers.Model
     [Serializable]
     public class WordData
     {
-        public WordData(string Word, int Count, string imgUrl)
+        public WordData(string Word, int Count)
         {
             this.Word = Word;
             this.Count = Count;
-            this.imgUrl = imgUrl;
         }
 
         public string Word;
         public int Count;
-        public string imgUrl;
+        public List<string> imgUrls;
     }
 }

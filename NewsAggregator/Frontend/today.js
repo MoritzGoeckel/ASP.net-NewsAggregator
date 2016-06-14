@@ -56,8 +56,6 @@ function setWord(index, element)
 
     $(".bilderSection").show('slide', { direction: 'right' }, 300);
     
-    /*$('body').css('backgroundImage', 'url(' + word.imgUrl + ')');*/
-
     $(".word").removeClass("activeWord");
     $(element).toggleClass("activeWord");
 
@@ -138,7 +136,11 @@ function setWord(index, element)
         onResize();
     });
 
-    $("#bilder").css('background-image', 'url(' + word.imgUrl + ')');
+    var bilderHTML = "";
+    $.each(word.imgUrls, function (key, val) {
+        bilderHTML += "<a target='_blank' href='https://www.google.de/search?q=" + word.Word + "&safe=off&tbm=isch'><img src='" + val + "' /></a>";
+    });
+    $("#bilder").html(bilderHTML);
 }
 
 function shortStr(string, number)

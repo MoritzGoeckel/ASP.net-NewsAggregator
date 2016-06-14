@@ -171,7 +171,7 @@ namespace NewsAggregator.BackgroundWorkers
                 .SetLimit(count);
 
             foreach(var d in docs)
-                returnWords.Add(new WordData(d["word"].AsString, d["count"].AsInt32, "#"));
+                returnWords.Add(new WordData(d["word"].AsString, d["count"].AsInt32));
 
             return returnWords;
         }
@@ -188,7 +188,7 @@ namespace NewsAggregator.BackgroundWorkers
                 .SetLimit(count);
 
             foreach (var d in docs)
-                returnWords.Add(new WordData(d["word"].AsString, d["count"].AsInt32, "#"));
+                returnWords.Add(new WordData(d["word"].AsString, d["count"].AsInt32));
 
             return returnWords;
         }

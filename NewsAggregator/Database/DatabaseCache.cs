@@ -15,7 +15,7 @@ namespace NewsAggregator.Database
         private Dictionary<string, List<Article>> articles = new Dictionary<string, List<Article>>();
         private List<WordData> words = new List<WordData>();
 
-        private Dictionary<string, string> WordImageUrls = new Dictionary<string, string>();
+        private Dictionary<string, List<string>> WordImageUrls = new Dictionary<string, List<string>>();
 
         private Dictionary<string, List<DateCountPair>> wordStatistics = new Dictionary<string, List<DateCountPair>>();
 
@@ -111,11 +111,10 @@ namespace NewsAggregator.Database
                     if (WordImageUrls.ContainsKey(word.Word) == false)
                     {
                         List<string> urls = MoritzImageSearchAPI.getGoogleImageSearchResult(word.Word);
-                        string theUrl = (urls.Count != 0 ? urls[0] : "#");
-                        WordImageUrls.Add(word.Word, theUrl);
+                        WordImageUrls.Add(word.Word, new List<string>(urls));
                     }
 
-                    word.imgUrl = WordImageUrls[word.Word];
+                    word.imgUrls = WordImageUrls[word.Word];
                 }
                 catch { }
             }

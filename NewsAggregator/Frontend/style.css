@@ -17,6 +17,10 @@
     font-family: Chunkfive;
 }
 
+#bilder{
+    overflow: auto;
+}
+
 #statistics{
     /*margin-top: 30px;*/
     padding-top: 40px;
@@ -81,4 +85,14 @@ h1{
     padding-left: 33px;
     font-size: 70px;
     color: #ff0002;
+}
+
+#bilder img{
+    vertical-align: middle;
+    
+    height: 100px;
+    width: auto;
+
+    margin-top: 30px;
+    margin-left: 30px;
 }
