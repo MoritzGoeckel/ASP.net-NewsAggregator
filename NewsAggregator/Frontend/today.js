@@ -54,7 +54,7 @@ function setWord(index, element)
     var word = words[index];
     console.log(word);
 
-    $(".bilderSection").show('slide', { direction: 'right' }, 300);
+    $(".bilderSection").show('slide', { direction: 'left' }, 300);
     
     $(".word").removeClass("activeWord");
     $(element).toggleClass("activeWord");
