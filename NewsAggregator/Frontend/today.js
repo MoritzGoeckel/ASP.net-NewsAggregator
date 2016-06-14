@@ -6,10 +6,19 @@ var uppercaseThreshold = 0.7;
 
 var words;
 
+function onResize()
+{
+    $("#bilder").height($("#articles").position().top + $("#articles").height() - $("#bilder").position().top + 10);
+}
+
+$(window).resize(function () {
+    onResize();
+});
+
 $(function(){
     $(".artikelSection").hide();
     $(".verlaufSection").hide();
-
+    $(".bilderSection").hide();
 
     $.getJSON(url + "words", function( data ) {
         console.log(url + "words");
@@ -26,7 +35,7 @@ $(function(){
             var proportionalSize = ((val.Count - min) / (max - min));
             var square = (proportionalSize + 1) * (proportionalSize + 1);
 
-            output += "<a href='#' onclick='setWord("+index+", this);' class='word'><span style='font-size: " + ((proportionalSize * (maxWordSize - minWordSize)) + minWordSize) +"px; "
+            output += "<a href='#' onclick='setWord(" + index + ", this);' class='word'><span style='font-size: " + ((proportionalSize * (maxWordSize - minWordSize)) + minWordSize) + "px; "
                 + "line-height: " + (square < 1.3 ? square : 1.3) + ";"
                 + (proportionalSize > uppercaseThreshold ? "text-transform: uppercase;" : "") + "' >"
                 + val.Word + "</span></a> ";
@@ -36,6 +45,8 @@ $(function(){
 
         $("#words").html(output);
     });
+
+    setInterval(function () { onResize(); }, 300);
 });
 
 function setWord(index, element)
@@ -43,6 +54,8 @@ function setWord(index, element)
     var word = words[index];
     console.log(word);
 
+    $(".bilderSection").show('slide', { direction: 'right' }, 300);
+    
     /*$('body').css('backgroundImage', 'url(' + word.imgUrl + ')');*/
 
     $(".word").removeClass("activeWord");
@@ -101,6 +114,8 @@ function setWord(index, element)
                 }
             }
         });
+
+        onResize();
     });
 
     //Articles
@@ -119,7 +134,11 @@ function setWord(index, element)
 
         $("#articles").html(output);
         $(".artikelSection").show('slide', { direction: 'right' }, 300);
+
+        onResize();
     });
+
+    $("#bilder").css('background-image', 'url(' + word.imgUrl + ')');
 }
 
 function shortStr(string, number)
