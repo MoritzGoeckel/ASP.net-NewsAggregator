@@ -70,7 +70,9 @@ namespace NewsAggregator.BackgroundWorkers
             List<Article> returnArticles = new List<Article>();
             var docs = articles.FindAs<BsonDocument>(
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to))
-                ).SetLimit(count);
+                )
+                .SetSortOrder(SortBy.Descending("downloaded"))
+                .SetLimit(count);
 
             foreach (var d in docs)
                 returnArticles.Add(new Article(d, this));
@@ -86,7 +88,9 @@ namespace NewsAggregator.BackgroundWorkers
                     Query.GT("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(from)),
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to))
                     )
-                ).SetLimit(count);
+                )
+                .SetSortOrder(SortBy.Descending("downloaded"))
+                .SetLimit(count);
 
             foreach (var d in docs)
                 returnArticles.Add(new Article(d, this));
@@ -102,7 +106,8 @@ namespace NewsAggregator.BackgroundWorkers
                     Query.GT("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(from)),
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to))
                     )
-                );
+                )
+                .SetSortOrder(SortBy.Descending("downloaded"));
 
             foreach (var d in docs)
                 returnArticles.Add(new Article(d, this));
@@ -118,7 +123,9 @@ namespace NewsAggregator.BackgroundWorkers
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to)),
                     Query.Or(Query.Matches("headline", getSearchString(word))) //, Query.Matches("summery", getSearchString(word))
                     )
-                ).SetLimit(count);
+                )
+                .SetSortOrder(SortBy.Descending("downloaded"))
+                .SetLimit(count);
 
             foreach (var d in docs)
                 returnArticles.Add(new Article(d, this));
@@ -135,7 +142,9 @@ namespace NewsAggregator.BackgroundWorkers
                     Query.LTE("downloaded", DateTimeHelper.DateTimeToUnixTimestamp(to)),
                     Query.Or(Query.Matches("headline", getSearchString(word))) //, Query.Matches("summery", getSearchString(word))
                     )
-                ).SetLimit(count);
+                )
+                .SetSortOrder(SortBy.Descending("downloaded"))
+                .SetLimit(count);
 
             foreach (var d in docs)
                 returnArticles.Add(new Article(d, this));

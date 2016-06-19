@@ -1,7 +1,7 @@
 var url = 'http://178.77.69.80/api/';
 
-var maxWordSize = 40;
-var minWordSize = 15;
+var maxWordSize = 50;
+var minWordSize = 10;
 var uppercaseThreshold = 0.7;
 
 var words;
