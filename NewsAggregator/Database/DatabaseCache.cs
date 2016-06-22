@@ -71,35 +71,62 @@ namespace NewsAggregator.Database
             this.words = words;
         }
 
-        public void clearCache()
-        {
-            this.words.Clear();
-            this.articles.Clear();
-        }
-
+        //Todo: better machen :)
         public void UpdateCache(INewsDatabase database, int wordsCount = 100)
         {
-            clearCache();
+            List<WordData> words = database.GetCurrentWords(wordsCount); //Dauert lange
+            List<WordData> oldWords = this.words;
 
-            List<WordData> words = database.GetCurrentWords(wordsCount);
+            List<WordData> removedWords = new List<WordData>();
+
             setCurrentWords(words);
+            
+            //Remove old words
+            /*new Thread(delegate ()
+            {
+                Thread.Sleep(5 * 60 * 1000); //Hat Zeit, ist ja nur speicher leerend
+
+                foreach (WordData possiblyRemovedWord in oldWords)
+                {
+                    bool found = false;
+                    foreach (WordData word in words)
+                    {
+                        if (possiblyRemovedWord.Word == word.Word)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found == false)
+                        removedWords.Add(possiblyRemovedWord);
+                }
+
+                foreach (WordData toRemoveWord in removedWords)
+                {
+                    this.articles.Remove(toRemoveWord.Word);
+                    this.wordStatistics.Remove(toRemoveWord.Word);
+                }
+            }).Start();*/
 
             foreach (WordData pair in words)
             {
                 new Thread(delegate ()
                 {
-                    setArticles(pair.Word, database.GetArticles(pair.Word, DateTime.Now, 50));
+                    List<Article> articles = database.GetArticles(pair.Word, DateTime.Now, 50); //Dauert
+                    setArticles(pair.Word, articles);
                 }).Start();
 
                 new Thread(delegate ()
                 {
-                    setStatistic(pair.Word, database.GetWordStatistic(pair.Word));
+                    List<DateCountPair> pairs = database.GetWordStatistic(pair.Word); //Dauert
+                    setStatistic(pair.Word, pairs);
                 }).Start();
             }
 
             new Thread(delegate ()
             {
-                UpdateWordImageUrls();
+                UpdateWordImageUrls(); //Dauert
             }).Start();
         }
 
