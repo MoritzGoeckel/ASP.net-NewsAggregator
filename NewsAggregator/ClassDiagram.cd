@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NewsAggregator.BundleConfig">
+    <Position X="17" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.RouteConfig">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.WebApiConfig">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Startup">
+    <Position X="18.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAAAAAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.ArticleProcessor">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAJAIAABAAIACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BackgroundWorkers\ArticleProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.DataDownloader">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAABAAgAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BackgroundWorkers\DataDownloader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.NewsAggregatorScheduler" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="2.5" />
+    <NestedTypes>
+      <Class Name="NewsAggregator.BackgroundWorkers.NewsAggregatorScheduler.doUpdateJob" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BackgroundWorkers\NewsAggregatorScheduler.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="NewsAggregator.BackgroundWorkers.NewsAggregatorScheduler.saveCurrentWordsToHistoryJob" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BackgroundWorkers\NewsAggregatorScheduler.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAAAAIAACAAAABYAAAAAAAAAABAAARAYAAAAAAAAAA=</HashCode>
+      <FileName>BackgroundWorkers\NewsAggregatorScheduler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.MongoDBImplementation" BaseTypeListCollapsed="true">
+    <Position X="21" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIkAAAAABBSEAgBAQIgABDCAIBAoAAAgACAABAAAADI=</HashCode>
+      <FileName>Database\MongoDBImplementation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.Article">
+    <Position X="10.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAACCACAAAAAAAACAgAAAACBAAAQAAAAA=</HashCode>
+      <FileName>Models\Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Controllers.ArticlesController">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAQAAAAAABAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ArticlesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Controllers.WordsController">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAgAAAAAAABAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\WordsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Database.DatabaseCache" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAIAEAAAAAAAAAAAiIAAABAAAgEAICAAAIAACAA=</HashCode>
+      <FileName>Database\DatabaseCache.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.Model.DateCountPair">
+    <Position X="10.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\DateCountPair.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.Model.TextSource">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAACAAABAAAQAAAIgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TextSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.BackgroundWorkers.Model.WordData">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAQAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WordData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Util.DateTimeHelper">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\DateTimeHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Util.GlobalDataManager" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAAAAAAAAAAABAAAACAABAAAAAAAQgIAAAAAAAAAA=</HashCode>
+      <FileName>Util\GlobalDataManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NewsAggregator.Util.Importer">
+    <Position X="16" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAKAAA=</HashCode>
+      <FileName>Util\Importer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Util.Logger">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Util\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsAggregator.Util.MoritzImageSearchAPI">
+    <Position X="17.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Util\MoritzImageSearchAPI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="NewsAggregator.BackgroundWorkers.INewsDatabase" Collapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAgAEwBAEAEAAAQIAQAAEAAAAAAQAAgAAIAAAAA=</HashCode>
+      <FileName>Database\INewsDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
