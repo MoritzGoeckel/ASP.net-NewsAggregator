@@ -6,4 +6,4 @@ ASP.net in C# for the aggregation and processing of the data and for the restful
 HTML, CSS, JQuery and Bootstrap for the frontend.
 
 #I want to know more!
-This project was created by me in a course at my university. I wrote a paper about it.
+This project was created by me in a course at my university. I wrote a paper about it. [a link](https://github.com/MoritzGoeckel/NewsAggregator/blob/master/Paper_MongoDB.pdf)
